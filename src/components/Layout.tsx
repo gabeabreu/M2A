@@ -23,7 +23,8 @@ const Layout = ({ children }: Props) => {
   }
 
   return (
-    <div className='p-5'>
+    <div className='w-full mx-auto max-w-[310px] md:max-w-[738px] xl:max-w-[1220px]'>
+      <img src='../assets/images/logo.png' alt='logo' />
       <div className='md:hidden p-5 mb-5'>
         <label htmlFor='tabs' className='sr-only'>
           Select a tab
