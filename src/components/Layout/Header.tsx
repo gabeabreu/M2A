@@ -1,9 +1,5 @@
 import { useState } from 'react';
 
-interface Props {
-  children: React.ReactNode;
-}
-
 const tabs = [
   { name: 'Empresas', href: '#', current: true },
   { name: 'Questionário', href: '#', current: false },
@@ -15,7 +11,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Layout = ({ children }: Props) => {
+const Header = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   function handleTab(tabIdx) {
@@ -73,9 +69,7 @@ const Layout = ({ children }: Props) => {
           ))}
         </nav>
       </div>
-      {children}
     </div>
   );
 };
-export default Layout;
-//span tag goes inside a div component
+export default Header;
