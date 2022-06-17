@@ -24,7 +24,7 @@ const Layout = ({ children }: Props) => {
 
   return (
     <div className='p-5'>
-      <div className='md:hidden bg-white p-5 mb-5'>
+      <div className='md:hidden p-5 mb-5'>
         <label htmlFor='tabs' className='sr-only'>
           Select a tab
         </label>
@@ -32,7 +32,7 @@ const Layout = ({ children }: Props) => {
         <select
           id='tabs'
           name='tabs'
-          className='py-10 px-5 block w-full border border-gray-300 rounded-sm'
+          className='bg-[#004975] text-white py-10 px-5 block w-full border border-gray-300 rounded-lg'
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
@@ -56,7 +56,7 @@ const Layout = ({ children }: Props) => {
                   : 'text-gray-400 hover:text-gray-700',
                 tabIdx === 0 ? 'rounded-l-lg' : '',
                 tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '',
-                'group relative min-w-0 flex-1 overflow-hidden bg-[#004975] py-4 px-4 text-sm font-medium text-center hover:bg-[#004979] focus:z-10'
+                'group relative min-w-0 flex-1 overflow-hidden bg-[#004975] py-4 px-4 text-sm font-medium text-center focus:z-10'
               )}
               aria-current={tab.current ? 'page' : undefined}
             >
