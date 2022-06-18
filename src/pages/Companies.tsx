@@ -5,11 +5,30 @@ import Layout from '../components/Layout';
 function Companies() {
   return (
     <Layout>
-      <div className='flex flex-col bg-gray-400 h-screen w-screen justify-center items-center'>
-        <p className='text-white text-2xl'>Companies</p>
-        <Link to='/'>
-          <p className='text-blue-900 text-xl'>{`<- go back`}</p>
-        </Link>
+      {//headless tabs}
+      <div>
+        <h1>Empresas</h1>
+        <div>
+
+        </div>
+        <div>
+          <input></input>
+          <select></select>
+          <select></select>
+          <select></select>
+          <select></select>
+          <div>
+            <button></button>
+            <button></button>
+          </div>
+        </div>
+        <div>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <button></button>
+        </div>
       </div>
     </Layout>
   );
