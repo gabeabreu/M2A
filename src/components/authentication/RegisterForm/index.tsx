@@ -1,11 +1,19 @@
 import { Formik, Field, Form } from "formik";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { GeneralActions } from "../../../redux/general";
 import { InputFormik, SelectFormik } from "../../index";
 import formSchema from "./formSchema";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   function handleSubmit(values) {
     console.log(values);
   }
+  useEffect(() => {
+    console.log("disparo");
+    dispatch(GeneralActions.getUfRequest());
+  }, []);
 
   return (
     <Formik onSubmit={handleSubmit} {...formSchema}>
@@ -26,9 +34,9 @@ const RegisterForm = () => {
 
               <div className="flex flex-col col-span-12 sm:col-span-7">
                 <InputFormik
-                  name="email"
-                  placeholder="exemplo@email.com"
-                  label="Email"
+                  name="cpf"
+                  placeholder="000.000.000-00"
+                  label="CPF"
                 />
               </div>
               <div className="flex flex-col col-span-12 sm:col-span-5">
@@ -36,6 +44,14 @@ const RegisterForm = () => {
                   name="telefone"
                   placeholder="(00) 0 0000-0000"
                   label="Telefone"
+                />
+              </div>
+
+              <div className="flex flex-col col-span-12 sm:col-span-12">
+                <InputFormik
+                  name="email"
+                  placeholder="exemplo@email.com"
+                  label="Email"
                 />
               </div>
 

@@ -10,14 +10,11 @@ interface Item {
 interface Props {
   data: Item[];
   autoFocus?: any;
-  type?: string;
   name: string;
   label?: string;
   width?: number;
   placeholder?: string;
   disableErrorMessage?: boolean;
-  multiline?: boolean;
-  secureTextEntry?: boolean;
   description?: string;
   mask?: string;
   descriptionMarginBottom?: number;
@@ -31,8 +28,6 @@ const InputFormik: React.FC<Props> = ({
   placeholder,
   disableErrorMessage,
   description,
-  multiline,
-  type,
 }) => {
   const { values, errors, touched, setFieldValue, setErrors } =
     useFormikContext<any>();
@@ -46,8 +41,6 @@ const InputFormik: React.FC<Props> = ({
   const onFocusHandler = () => {
     inputRef.current && inputRef.current.focus();
   };
-
-  const textAlignVertical = multiline ? "top" : "center";
 
   useEffect(() => {
     if (autoFocus) onFocusHandler();
@@ -66,7 +59,6 @@ const InputFormik: React.FC<Props> = ({
             error ? "border-red-400" : "mb-8 border-gray-300"
           } block appearance-none w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
           as="select"
-          focus={focus}
           name={name}
           error={!disableErrorMessage ? error : undefined}
           ref={inputRef}
@@ -76,13 +68,9 @@ const InputFormik: React.FC<Props> = ({
             delete newErrors[name];
             setErrors(newErrors);
           }}
-          type={type}
           onBlur={() => setFocus(false)}
-          placeholderTextColor={"#bdbdbd"}
           value={values[name]}
           placeholder={placeholder}
-          multiline={multiline}
-          textAlignVertical={textAlignVertical}
         >
           {data.map((item) => (
             <option key={item.key} value={item.key}>
