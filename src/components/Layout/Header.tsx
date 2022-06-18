@@ -7,10 +7,6 @@ const tabs = [
   { name: "Usuários", href: "/users" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const Header = () => {
   const location = useLocation();
   let navigate = useNavigate();
@@ -60,12 +56,11 @@ const Header = () => {
             <Link to={tab.href} className="flex-1">
               <div
                 key={tab.name}
-                className={classNames(
+                className={`${
                   tab.href === activeTab
                     ? "text-white border-indigo-500"
-                    : "text-gray-400 hover:text-gray-300 border-transparent",
-                  "group relative min-w-0 flex-1 overflow-hidden bg-[#004975] py-[0.75rem] px-4 text-sm font-medium text-center border-b-2 focus:z-10 duration-500"
-                )}
+                    : "text-gray-400 hover:text-gray-300 border-transparent"
+                } group relative min-w-0 flex-1 overflow-hidden bg-[#004975] py-[0.75rem] px-4 text-sm font-medium text-center border-b-2 focus:z-10 duration-500`}
                 aria-current={tab.href === activeTab ? "page" : undefined}
               >
                 <span>{tab.name}</span>
