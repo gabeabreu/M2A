@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import { AccountActions } from "../redux/account";
 import { useSelector } from "../redux/hooks";
 import { Helmet } from "react-helmet";
-import AuthCard from "../components/authentication/AuthCard";
+import AuthCard from "../components/authentication";
 
 function Authentication() {
   const { account } = useSelector((state) => state);
