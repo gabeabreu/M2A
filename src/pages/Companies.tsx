@@ -1,16 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
+import React from "react";
+import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 function Companies() {
   return (
     <Layout>
-      {//headless tabs}
+      {/* headless tabs */}
       <div>
         <h1>Empresas</h1>
-        <div>
-
-        </div>
+        <div></div>
         <div>
           <input></input>
           <select></select>
