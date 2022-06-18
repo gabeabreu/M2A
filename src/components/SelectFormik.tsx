@@ -72,14 +72,15 @@ const InputFormik: React.FC<Props> = ({
           ref={inputRef}
           onFocus={() => {
             setFocus(true);
-            setErrors({});
+            const newErrors = { ...errors };
+            delete newErrors[name];
+            setErrors(newErrors);
           }}
           type={type}
           onBlur={() => setFocus(false)}
           placeholderTextColor={"#bdbdbd"}
           value={values[name]}
           placeholder={placeholder}
-          onChangeText={(text) => setFieldValue(name, text)}
           multiline={multiline}
           textAlignVertical={textAlignVertical}
         >

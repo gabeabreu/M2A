@@ -46,9 +46,12 @@ const InputFormik: React.FC<Props> = ({
 
   const textAlignVertical = multiline ? "top" : "center";
 
+  // console.log(setErrors({ ...errors, name: Object.keys(errors) }));
+
   useEffect(() => {
     if (autoFocus) onFocusHandler();
   }, []);
+
   console.log(error);
   return (
     <>
@@ -68,7 +71,9 @@ const InputFormik: React.FC<Props> = ({
           ref={inputRef}
           onFocus={() => {
             setFocus(true);
-            setErrors({});
+            const newErrors = { ...errors };
+            delete newErrors[name];
+            setErrors(newErrors);
           }}
           type={type}
           onBlur={() => setFocus(false)}

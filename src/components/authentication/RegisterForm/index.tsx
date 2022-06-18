@@ -8,12 +8,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <Formik
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-      {...formSchema}
-    >
+    <Formik onSubmit={handleSubmit} {...formSchema}>
       <Form>
         <div className="flex">
           <div className="md:col-span-2">
@@ -43,7 +38,8 @@ const RegisterForm = () => {
                   label="Telefone"
                 />
               </div>
-              <div className="col-span-12 sm:col-span-6">
+
+              <div className="col-span-12 sm:col-span-5">
                 <SelectFormik
                   name="uf"
                   placeholder="DF"
@@ -54,14 +50,49 @@ const RegisterForm = () => {
                   ]}
                 />
               </div>
+              <div className="col-span-12 sm:col-span-7">
+                <SelectFormik
+                  name="formacao"
+                  placeholder="Superior"
+                  label="Formação"
+                  data={[
+                    { name: "Analfabeto", key: "analfabeto" },
+                    { name: "Primeiro grau", key: "primeiro grau" },
+                    { name: "Segundo grau", key: "segundo grau" },
+                    { name: "Superior", key: "superior" },
+                    { name: "Pós-graduação", key: "pos graduacao" },
+                    {
+                      name: "Mestrado e/ou Doutorado",
+                      key: "mestrado ou doutorado",
+                    },
+                  ]}
+                />
+              </div>
+
+              <div className="flex flex-col col-span-12 sm:col-span-6">
+                <InputFormik
+                  name="password"
+                  type="password"
+                  placeholder="••••••"
+                  label="Senha"
+                />
+              </div>
+              <div className="flex flex-col col-span-12 sm:col-span-6">
+                <InputFormik
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="••••••"
+                  label="Confimar senha"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div>
+        <div className="mt-5">
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Registrar
           </button>

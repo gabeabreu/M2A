@@ -9,9 +9,9 @@ const initialValues: any = {
   telefone: "",
   password: "",
   confirmPassword: "",
-  formacao: "",
+  formacao: "analfabeto",
   perfil: "user",
-  uf: "",
+  uf: "AC",
   ativo: true,
 };
 
@@ -24,10 +24,15 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, formErrors.errorMessages.shortPassword)
     .required(formErrors.errorMessages.required),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
+  confirmPassword: Yup.string()
+    .required(formErrors.errorMessages.required)
+    .oneOf(
+      [Yup.ref("password"), null],
+      formErrors.errorMessages.differentPassword
+    ),
+  formacao: Yup.string().required(formErrors.errorMessages.required),
+  uf: Yup.string().required(formErrors.errorMessages.required),
+  telefone: Yup.string().required(formErrors.errorMessages.required),
 });
 
 // async function validate({ birthday, email }: AccountRegister) {
