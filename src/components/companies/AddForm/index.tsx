@@ -6,9 +6,9 @@ import { GeneralActions } from '../../../redux/general';
 import { useSelector } from '../../../redux/hooks';
 import Button from '../../Button';
 import { InputFormik, SelectFormik } from '../../index';
-import formSchema from './formSchema';
+import formSchema from '../EditForm/formSchema';
 
-const EditForm = () => {
+const AddForm = () => {
   const dispatch = useDispatch();
   const { general, account } = useSelector((state) => state);
 
@@ -45,37 +45,27 @@ const EditForm = () => {
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-5'>
                 <InputFormik
+                  type='number'
                   name='num_empregados'
                   label='Número de empregados'
                 />
               </div>
 
               <div className='flex flex-col col-span-12 sm:col-span-12'>
-                <InputFormik name='dt_ano_inicio' label='Ano de início' />
+                <InputFormik
+                  type='date'
+                  name='dt_ano_inicio'
+                  label='Ano de início'
+                />
               </div>
 
               <div className='col-span-12 sm:col-span-5'>
-                <SelectFormik
-                  name='telefone'
-                  label='Telefone'
-                  data={general.uf}
-                />
+                <InputFormik name='telefone' label='Telefone' />
               </div>
               <div className='col-span-12 sm:col-span-7'>
-                <SelectFormik
+                <InputFormik
                   name='inscricao_estadual'
                   label='Inscrição estadual'
-                  data={[
-                    { label: 'Analfabeto', value: 'analfabeto' },
-                    { label: 'Primeiro grau', value: 'primeiro grau' },
-                    { label: 'Segundo grau', value: 'segundo grau' },
-                    { label: 'Superior', value: 'superior' },
-                    { label: 'Pós-graduação', value: 'pos graduacao' },
-                    {
-                      label: 'Mestrado e/ou Doutorado',
-                      value: 'mestrado ou doutorado',
-                    },
-                  ]}
                 />
               </div>
 
@@ -99,30 +89,34 @@ const EditForm = () => {
                 <InputFormik name='Valores' label='Valores' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik name='grupo' label='Grupo' />
+                <SelectFormik data={[]} name='grupo' label='Grupo' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik name='segmento' label='Segmento' />
+                <SelectFormik data={[]} name='segmento' label='Segmento' />
               </div>
 
               <div className='flex flex-col col-span-12 sm:col-span-7'>
-                <InputFormik name='setor' label='Setor' />
+                <SelectFormik data={[]} name='setor' label='Setor' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-5'>
-                <InputFormik name='tipo_industria' label='Tipo de indústria' />
+                <SelectFormik
+                  data={[]}
+                  name='tipo_industria'
+                  label='Tipo de indústria'
+                />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
                 <InputFormik name='faturamento' label='Faturamento' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik name='projeto' label='Projeto' />
+                <SelectFormik data={[]} name='projeto' label='Projeto' />
               </div>
-
               <div className='flex flex-col col-span-12 sm:col-span-7'>
                 <InputFormik name='endereco' label='Endereço' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-5'>
-                <InputFormik
+                <SelectFormik
+                  data={[]}
                   name='valor_arrecadacao'
                   label='Valor arrecadação'
                 />
@@ -132,11 +126,11 @@ const EditForm = () => {
         </div>
 
         <div className='mt-5'>
-          <Button title='Salvar' loading={account.loading} />
+          <Button title='Criar Empresa' loading={account.loading} />
         </div>
       </Form>
     </Formik>
   );
 };
 
-export default EditForm;
+export default AddForm;

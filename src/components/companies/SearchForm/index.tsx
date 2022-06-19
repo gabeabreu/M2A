@@ -11,7 +11,7 @@ const SearchForm = () => {
     <Formik onSubmit={handleSubmit} {...formSchema}>
       <Form>
         <div className='md:flex md:justify-around md:items-end mt-5 w-full'>
-          <div className='w-full md:pr-5'>
+          <div className='w-full md:pr-5  '>
             <InputFormik
               label='Pesquisar'
               name='pesquisa'
