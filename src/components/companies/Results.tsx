@@ -3,38 +3,15 @@ import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import Button from "../Button";
 import InputFormik from "../InputFormik";
+import { useSelector } from "../../redux/hooks";
 import Modal from "../Modal";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import { IoMdAdd } from "react-icons/io";
 
-/* This example requires Tailwind CSS v2.0+ */
-const company = [
-  {
-    nome: "Lindsay Walton",
-    empresa_vinculada: "Front-end Developer",
-    uf: "lindsay.walton@example.com",
-  },
-  {
-    nome: "Lindsay Walton",
-    empresa_vinculada: "Front-end Developer",
-    uf: "lindsay.walton@example.com",
-  },
-  {
-    nome: "Lindsay Walton",
-    empresa_vinculada: "Front-end Developer",
-    uf: "lindsay.walton@example.com",
-  },
-  {
-    nome: "Lindsay Walton",
-    empresa_vinculada: "Front-end Developer",
-    uf: "lindsay.walton@example.com",
-  },
-  // More people...
-];
-
 const Results = () => {
   const [editOpen, setEditOpen] = useState(false);
+  const { companies, general } = useSelector((state) => state);
   const [addOpen, setAddOpen] = useState(false);
 
   return (
@@ -103,27 +80,28 @@ const Results = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {company.map((person) => (
-                    <tr key={person.nome}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        {person.nome}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {person.empresa_vinculada}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {person.uf}
-                      </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button
-                          className="text-main-blue"
-                          onClick={() => setEditOpen(true)}
-                        >
-                          <FaEdit />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {companies &&
+                    companies?.companies?.data?.map((company) => (
+                      <tr key={company.razao_social}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {company.razao_social}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {company.cnpj}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {company.endereco as number}
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <button
+                            className="text-main-blue"
+                            onClick={() => setEditOpen(true)}
+                          >
+                            <FaEdit />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
