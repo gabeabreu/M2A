@@ -6,7 +6,7 @@ const initialValues: RegisterProfile = {
   nome: "Vitor",
   sobrenome: "Almeida",
   email: "vito@email.com",
-  cpf: "06008344170",
+  cpf: "06008344110",
   username: "",
   telefone: "61999944896",
   password: "123456",

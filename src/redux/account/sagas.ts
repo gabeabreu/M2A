@@ -27,10 +27,10 @@ function* getAccountSuccess(data, token) {
 
 function* registerAccount({ payload: { data } }: RegisterAccount) {
   try {
-    const { data: returnData } = yield call(api.account.registerAccount, data);
+    yield call(api.account.registerAccount, data);
 
     showToast("Registrado com sucesso!", "success");
-    yield registerAccountSuccess(returnData);
+    yield registerAccountSuccess(data);
   } catch (err) {
     yield put(AccountActions.registerAccountFailure());
 

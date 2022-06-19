@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AccountActions } from "../../redux/account";
+import { useSelector } from "../../redux/hooks";
+import Modal from "../Modal";
 
 const tabs = [
   { name: "Empresas", href: "/companies" },
@@ -10,24 +13,37 @@ const tabs = [
 ];
 
 const Header = () => {
-  const location = useLocation();
   let navigate = useNavigate();
   let dispatch = useDispatch();
+  const location = useLocation();
+  const { account } = useSelector((state) => state);
   const activeTab = location.pathname;
+
+  const [isProfileOpen, setProfileOpen] = useState(false);
 
   return (
     <div className="w-full mx-auto max-w-[310px] md:max-w-[738px] xl:max-w-[1220px] mb-9 duration-300">
+      <Modal
+        showModal={isProfileOpen}
+        onCloseModal={() => setProfileOpen(false)}
+        closeButton
+      />
       <div className="flex justify-between my-5">
         <img
           src={require("../../assets/images/logo.png")}
           alt="logo"
           className="h-8 md:h-14 xl:h-20"
         />
-        <div className="flex items-center P-1 space-x-1 md:space-x-4 xl:space-x-7">
-          <p className="text-xs xl:text-lg">INSERIR USUÁRIO REDUX AQUI</p>
-          <button onClick={() => dispatch(AccountActions.clearData())}>
+        <div
+          onClick={() => {
+            setProfileOpen(!isProfileOpen);
+          }}
+          className="flex items-center space-x-1 md:space-x-4 xl:space-x-7 cursor-pointer"
+        >
+          <p className="text-xs xl:text-lg">{`${account?.data.nome} ${account?.data.sobrenome}`}</p>
+          {/* <button onClick={() => dispatch(AccountActions.clearData())}>
             Logout
-          </button>
+          </button> */}
           <span className="inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
             <svg
               className="h-full w-full text-gray-300"
