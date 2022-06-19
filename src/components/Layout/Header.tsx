@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AccountActions } from "../../redux/account";
 import { useSelector } from "../../redux/hooks";
 import Modal from "../Modal";
+import Perfil from "./Perfil";
 
 const tabs = [
   { name: "Empresas", href: "/companies" },
@@ -27,7 +28,9 @@ const Header = () => {
         showModal={isProfileOpen}
         onCloseModal={() => setProfileOpen(false)}
         closeButton
-      />
+      >
+        <Perfil />
+      </Modal>
       <div className="flex justify-between my-5">
         <img
           src={require("../../assets/images/logo.png")}
