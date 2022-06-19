@@ -8,6 +8,8 @@ export enum AccountTypes {
   REGISTER_ACCOUNT_REQUEST = "@general/REGISTER_ACCOUNT_REQUEST",
   REGISTER_ACCOUNT_SUCCESS = "@general/REGISTER_ACCOUNT_SUCCESS",
   REGISTER_ACCOUNT_FAILURE = "@general/REGISTER_ACCOUNT_FAILURE",
+
+  CLEAR_DATA = "@general/CLEAR_DATA",
 }
 
 export interface GetAccount {
@@ -38,13 +40,18 @@ export interface RegisterAccountFailure {
   type: AccountTypes.REGISTER_ACCOUNT_FAILURE;
 }
 
+export interface ClearData {
+  type: AccountTypes.CLEAR_DATA;
+}
+
 export type AccountActionTypes =
   | GetAccount
   | GetAccountSuccess
   | GetAccountFailure
   | RegisterAccount
   | RegisterAccountSuccess
-  | RegisterAccountFailure;
+  | RegisterAccountFailure
+  | ClearData;
 
 export interface AccountState {
   loading: boolean;
@@ -53,9 +60,16 @@ export interface AccountState {
 }
 
 export interface Profile {
-  name: string;
-  surname: string;
+  nome: string;
+  sobrenome: string;
+  cpf: string;
   email: string;
+  username: string;
+  telefone: string;
+  formacao: string;
+  perfil: string;
+  uf: number | string;
+  empresa: number;
 }
 
 export interface LoginProfile {
@@ -64,18 +78,8 @@ export interface LoginProfile {
   password: string;
 }
 
-export interface RegisterProfile {
-  nome: string;
-  sobrenome: string;
-  cpf: string;
-  email: string;
-  username: string;
-  telefone: string;
+export interface RegisterProfile extends Profile {
   password: string;
   confirmPassword: string;
-  formacao: string;
-  perfil: string;
-  uf: number | string;
-  empresa: number;
   ativo: boolean | number;
 }

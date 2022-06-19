@@ -2,6 +2,8 @@
 import { Reducer } from "redux";
 import * as Actions from "./actions";
 import { AccountState, AccountTypes } from "./types";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
 const INITIAL_STATE: AccountState = {
   loading: false,
@@ -18,7 +20,12 @@ const reducer: Reducer<AccountState> = (
       return { ...state, loading: true };
 
     case AccountTypes.GET_ACCOUNT_SUCCESS:
-      return { ...state, loading: false, data: payload.data };
+      return {
+        ...state,
+        loading: false,
+        data: payload.data,
+        token: payload.token,
+      };
 
     case AccountTypes.GET_ACCOUNT_FAILURE:
       return { ...state, loading: false };
@@ -32,10 +39,19 @@ const reducer: Reducer<AccountState> = (
     case AccountTypes.REGISTER_ACCOUNT_FAILURE:
       return { ...state, loading: false };
 
+    case AccountTypes.CLEAR_DATA:
+      return INITIAL_STATE;
+
     default:
       return state;
   }
 };
 
+const persistConfig = {
+  key: "@M2A/Account",
+  storage,
+  whitelist: ["data", "token"],
+};
+
 export const AccountActions = Actions;
-export default reducer;
+export default persistReducer(persistConfig, reducer);

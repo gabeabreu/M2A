@@ -11,7 +11,9 @@ const LoginForm = () => {
   const { account } = useSelector((state) => state);
 
   function handleSubmit(values) {
-    dispatch(AccountActions.getAccountRequest(values));
+    dispatch(
+      AccountActions.getAccountRequest({ ...values, username: values.email })
+    );
   }
 
   return (

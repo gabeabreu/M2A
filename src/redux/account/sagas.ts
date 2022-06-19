@@ -5,36 +5,36 @@ import { AccountTypes, GetAccount, RegisterAccount } from "./types";
 import { customHistory } from "../../routes/CustomBrowserRouter";
 import * as api from "../../services/index";
 import * as helpers from "../../helpers/index";
+import showToast from "../../helpers/showToast";
 
 function* getAccount({ payload: { data } }: GetAccount) {
   try {
-    yield delay(2000);
-    console.log("Ran sagas");
+    const { data: returnData } = yield call(api.account.login, data);
 
-    yield getAccountSuccess({
-      name: "Vitor",
-      surname: "Machado",
-      email: "test@email.com",
-    });
+    showToast("Logado com sucesso!", "success");
+    yield getAccountSuccess(returnData.user, returnData.access);
   } catch (err) {
     yield put(AccountActions.getAccountFailure());
-    console.log(err);
+
+    showToast(helpers.formErrors.formatError(err), "error");
   }
 }
 
-function* getAccountSuccess(data) {
-  yield put(AccountActions.getAccountSuccess(data));
+function* getAccountSuccess(data, token) {
+  yield put(AccountActions.getAccountSuccess(data, token));
   customHistory.push("/companies");
 }
 
 function* registerAccount({ payload: { data } }: RegisterAccount) {
   try {
-    const { data: returnData } = yield call(api.account.registerUser, data);
+    yield call(api.account.registerAccount, data);
 
-    yield registerAccountSuccess(returnData);
+    showToast("Registrado com sucesso!", "success");
+    yield registerAccountSuccess(data);
   } catch (err) {
     yield put(AccountActions.registerAccountFailure());
-    console.log(err);
+
+    showToast(helpers.formErrors.formatError(err), "error");
   }
 }
 

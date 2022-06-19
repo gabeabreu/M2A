@@ -15,8 +15,8 @@ const SearchForm = () => {
             <InputFormik name='pesquisa' placeholder='Pesquisar' />
           </div>
           <div className='flex flex-col w-full md:p-5'>
-            <p>Estado</p>
             <SelectFormik
+              label='Estado'
               name='uf'
               data={[
                 { value: 'Test', label: 'test' },
@@ -25,8 +25,8 @@ const SearchForm = () => {
             />
           </div>
           <div className='flex flex-col w-full md:p-5'>
-            <p>Empresa vinculada</p>
             <SelectFormik
+              label='Empresa vinculada'
               name='empresa_vinculada'
               data={[
                 { value: 'Test', label: 'test' },
@@ -35,8 +35,8 @@ const SearchForm = () => {
             />
           </div>
           <div className='flex flex-col w-full md:p-5'>
-            <p>Arrecadação</p>
             <SelectFormik
+              label='Arrecadação'
               name='arrecadacao'
               data={[
                 { value: 'Test', label: 'test' },
@@ -45,8 +45,8 @@ const SearchForm = () => {
             />
           </div>
           <div className='flex flex-col w-full md:p-5'>
-            <p>Setor</p>
             <SelectFormik
+              label='Setor'
               name='setor'
               data={[
                 { value: 'Test', label: 'test' },
