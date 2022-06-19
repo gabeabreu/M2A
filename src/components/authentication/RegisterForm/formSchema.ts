@@ -3,17 +3,17 @@ import { formErrors } from "../../../helpers";
 import { RegisterProfile } from "../../../redux/account/types";
 
 const initialValues: RegisterProfile = {
-  nome: "Vitor",
-  sobrenome: "Almeida",
-  email: "vito@email.com",
-  cpf: "06008344110",
+  nome: "",
+  sobrenome: "",
+  email: "",
+  cpf: "",
   username: "",
-  telefone: "61999944896",
-  password: "123456",
-  confirmPassword: "123456",
-  formacao: "analfabeto",
-  perfil: "usuario",
-  uf: "AC",
+  telefone: "",
+  password: "",
+  confirmPassword: "",
+  formacao: "",
+  perfil: "",
+  uf: "",
   ativo: true,
   empresa: 1,
 };

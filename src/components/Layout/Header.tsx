@@ -44,9 +44,9 @@ const Header = () => {
           className="flex items-center space-x-1 md:space-x-4 xl:space-x-7 cursor-pointer"
         >
           <p className="text-xs xl:text-lg">{`${account?.data.nome} ${account?.data.sobrenome}`}</p>
-          {/* <button onClick={() => dispatch(AccountActions.clearData())}>
+          <button onClick={() => dispatch(AccountActions.clearData())}>
             Logout
-          </button> */}
+          </button>
           <span className="inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
             <svg
               className="h-full w-full text-gray-300"
