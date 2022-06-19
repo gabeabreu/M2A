@@ -60,6 +60,7 @@ export interface AccountState {
 }
 
 export interface Profile {
+  ativo: boolean;
   nome: string;
   sobrenome: string;
   cpf: string;
@@ -81,5 +82,4 @@ export interface LoginProfile {
 export interface RegisterProfile extends Profile {
   password: string;
   confirmPassword: string;
-  ativo: boolean | number;
 }

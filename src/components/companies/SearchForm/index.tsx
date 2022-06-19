@@ -11,10 +11,14 @@ const SearchForm = () => {
     <Formik onSubmit={handleSubmit} {...formSchema}>
       <Form>
         <div className='md:flex md:justify-around md:items-end mt-5 w-full'>
-          <div className='w-full md:p-5 xl:p-5'>
-            <InputFormik name='pesquisa' placeholder='Pesquisar' />
+          <div className='w-full md:pr-5'>
+            <InputFormik
+              label='Pesquisar'
+              name='pesquisa'
+              placeholder='Nome da empresa'
+            />
           </div>
-          <div className='flex flex-col w-full md:p-5'>
+          <div className='flex flex-col w-full md:px-5'>
             <SelectFormik
               label='Estado'
               name='uf'
@@ -24,7 +28,7 @@ const SearchForm = () => {
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:p-5'>
+          <div className='flex flex-col w-full md:px-5'>
             <SelectFormik
               label='Empresa vinculada'
               name='empresa_vinculada'
@@ -34,7 +38,7 @@ const SearchForm = () => {
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:p-5'>
+          <div className='flex flex-col w-full md:px-5'>
             <SelectFormik
               label='Arrecadação'
               name='arrecadacao'
@@ -44,7 +48,7 @@ const SearchForm = () => {
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:p-5'>
+          <div className='flex flex-col w-full md:pl-5'>
             <SelectFormik
               label='Setor'
               name='setor'
@@ -55,10 +59,10 @@ const SearchForm = () => {
             />
           </div>
         </div>
-        <div className='flex w-full justify-end p-5'>
+        <div className='flex w-full justify-end'>
           <button
             type='submit'
-            className='mb-14 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
+            className='mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
           >
             PESQUISAR
           </button>

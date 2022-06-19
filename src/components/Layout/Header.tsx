@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AccountActions } from '../../redux/account';
 import { useSelector } from '../../redux/hooks';
 import Modal from '../Modal';
-=======
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "../../redux/hooks";
-import Modal from "../Modal";
-import Perfil from "./Perfil";
-import { FaChevronDown } from "react-icons/fa";
->>>>>>> 493e667dbda8ab9095f815f83d4a9ce4c7b8d2e8
+import Perfil from './Perfil';
+import { FaChevronDown } from 'react-icons/fa';
 
 const tabs = [
   { name: 'Empresas', href: '/companies' },
@@ -35,15 +26,10 @@ const Header = () => {
         showModal={isProfileOpen}
         onCloseModal={() => setProfileOpen(false)}
         closeButton
-<<<<<<< HEAD
-      />
-      <div className='flex justify-between my-5'>
-=======
       >
         <Perfil />
       </Modal>
-      <div className="flex justify-between my-5">
->>>>>>> 493e667dbda8ab9095f815f83d4a9ce4c7b8d2e8
+      <div className='flex justify-between my-5'>
         <img
           src={require('../../assets/images/logo.png')}
           alt='logo'
@@ -53,22 +39,12 @@ const Header = () => {
           onClick={() => {
             setProfileOpen(!isProfileOpen);
           }}
-<<<<<<< HEAD
-          className='flex items-center space-x-1 md:space-x-4 xl:space-x-7 cursor-pointer'
+          className='flex items-center cursor-pointer'
         >
-          <p className='text-xs xl:text-lg'>{`${account?.data.nome} ${account?.data.sobrenome}`}</p>
-          {/* <button onClick={() => dispatch(AccountActions.clearData())}>
-            Logout
-          </button> */}
-          <span className='inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100'>
-=======
-          className="flex items-center cursor-pointer"
-        >
-          <p className="mr-2 text-xs xl:text-lg">{`${account?.data.nome} ${account?.data.sobrenome}`}</p>
-          <FaChevronDown color={"#474747"} />
+          <p className='mr-2 text-xs xl:text-lg'>{`${account?.data.nome} ${account?.data.sobrenome}`}</p>
+          <FaChevronDown color={'#474747'} />
 
-          <span className="ml-4 inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
->>>>>>> 493e667dbda8ab9095f815f83d4a9ce4c7b8d2e8
+          <span className='ml-4 inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100'>
             <svg
               className='h-full w-full text-gray-300'
               fill='currentColor'
