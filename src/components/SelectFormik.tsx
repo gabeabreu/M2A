@@ -47,6 +47,8 @@ const SelectFormik: React.FC<Props> = ({
     if (autoFocus) onFocusHandler();
   }, []);
 
+  console.log(values[name]);
+
   return (
     <>
       {label && (
@@ -73,12 +75,18 @@ const SelectFormik: React.FC<Props> = ({
           value={values[name]}
           placeholder={placeholder}
         >
-          {data &&
-            data.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
+          <>
+            <option value="" selected={values[name] ? true : false}>
+              Selecione
+            </option>
+
+            {data &&
+              data.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+          </>
         </Field>
         <FaChevronDown color={'#989898'} className='absolute right-3 top-3' />
       </div>

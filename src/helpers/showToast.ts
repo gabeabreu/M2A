@@ -22,7 +22,7 @@ function showToast(message: string, type?: string) {
       progress: undefined,
     });
   } else {
-    toast(message, {
+    toast.info(message, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

@@ -5,11 +5,16 @@ interface Props {
   title: string;
   color?: string;
   loading?: boolean;
+  onClick?: () => any;
 }
 
-const Button: React.FC<Props> = ({ loading, title, color }: Props) => {
+const Button: React.FC<Props> = ({ loading, title, color, onClick }: Props) => {
+  function handleClick() {
+    if (onClick) onClick();
+  }
+
   return (
-    <div>
+    <div onClick={handleClick}>
       <button
         style={{ backgroundColor: color ? color : "none" }}
         disabled={loading}
