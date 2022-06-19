@@ -1,6 +1,7 @@
-import { Formik, Form } from 'formik';
-import { InputFormik, SelectFormik } from '../../index';
-import formSchema from './formSchema';
+import { Formik, Form } from "formik";
+import { InputFormik, SelectFormik, Button } from "../../index";
+import formSchema from "./formSchema";
+import { IoMdTrash, IoMdSearch } from "react-icons/io";
 
 const SearchForm = () => {
   function handleSubmit(values) {
@@ -10,62 +11,59 @@ const SearchForm = () => {
   return (
     <Formik onSubmit={handleSubmit} {...formSchema}>
       <Form>
-        <div className='md:flex md:justify-around md:items-end mt-5 w-full'>
-          <div className='w-full md:pr-5  '>
+        <div className="md:flex md:justify-around md:items-end mt-5 w-full">
+          <div className="w-full md:pr-5  ">
             <InputFormik
-              label='Pesquisar'
-              name='pesquisa'
-              placeholder='Nome da empresa'
+              label="Pesquisar"
+              name="pesquisa"
+              placeholder="Nome da empresa"
             />
           </div>
-          <div className='flex flex-col w-full md:px-5'>
+          <div className="flex flex-col w-full md:px-5">
             <SelectFormik
-              label='Estado'
-              name='uf'
+              label="Estado"
+              name="uf"
               data={[
-                { value: 'Test', label: 'test' },
-                { value: 'Test2', label: 'test2' },
+                { value: "Test", label: "test" },
+                { value: "Test2", label: "test2" },
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:px-5'>
+          <div className="flex flex-col w-full md:px-5">
             <SelectFormik
-              label='Empresa vinculada'
-              name='empresa_vinculada'
+              label="Emp. vinculada"
+              name="empresa_vinculada"
               data={[
-                { value: 'Test', label: 'test' },
-                { value: 'Test2', label: 'test2' },
+                { value: "Test", label: "test" },
+                { value: "Test2", label: "test2" },
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:px-5'>
+          <div className="flex flex-col w-full md:px-5">
             <SelectFormik
-              label='Arrecadação'
-              name='arrecadacao'
+              label="Arrecadação"
+              name="arrecadacao"
               data={[
-                { value: 'Test', label: 'test' },
-                { value: 'Test2', label: 'test2' },
+                { value: "Test", label: "test" },
+                { value: "Test2", label: "test2" },
               ]}
             />
           </div>
-          <div className='flex flex-col w-full md:pl-5'>
+          <div className="flex flex-col w-full md:pl-5">
             <SelectFormik
-              label='Setor'
-              name='setor'
+              label="Setor"
+              name="setor"
               data={[
-                { value: 'Test', label: 'test' },
-                { value: 'Test2', label: 'test2' },
+                { value: "Test", label: "test" },
+                { value: "Test2", label: "test2" },
               ]}
             />
           </div>
         </div>
-        <div className='flex w-full justify-end'>
-          <button
-            type='submit'
-            className='mb-8 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
-          >
-            PESQUISAR
-          </button>
+        <div className="-mt-3 flex w-full gap-x-5 justify-end">
+          <Button title="Limpar" color="#ff8282" icon={<IoMdTrash />} />
+
+          <Button title="Filtrar" icon={<IoMdSearch />} />
         </div>
       </Form>
     </Formik>
