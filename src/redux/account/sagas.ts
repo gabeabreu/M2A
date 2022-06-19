@@ -8,28 +8,23 @@ import * as helpers from "../../helpers/index";
 
 function* getAccount({ payload: { data } }: GetAccount) {
   try {
-    yield delay(2000);
-    console.log("Ran sagas");
+    const { data: returnData } = yield call(api.account.login, data);
 
-    yield getAccountSuccess({
-      name: "Vitor",
-      surname: "Machado",
-      email: "test@email.com",
-    });
+    yield getAccountSuccess(returnData.user, returnData.access);
   } catch (err) {
     yield put(AccountActions.getAccountFailure());
     console.log(err);
   }
 }
 
-function* getAccountSuccess(data) {
-  yield put(AccountActions.getAccountSuccess(data));
+function* getAccountSuccess(data, token) {
+  yield put(AccountActions.getAccountSuccess(data, token));
   customHistory.push("/companies");
 }
 
 function* registerAccount({ payload: { data } }: RegisterAccount) {
   try {
-    const { data: returnData } = yield call(api.account.registerUser, data);
+    const { data: returnData } = yield call(api.account.registerAccount, data);
 
     yield registerAccountSuccess(returnData);
   } catch (err) {

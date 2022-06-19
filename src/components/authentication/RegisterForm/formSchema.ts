@@ -14,7 +14,7 @@ const initialValues: RegisterProfile = {
   formacao: "analfabeto",
   perfil: "usuario",
   uf: "AC",
-  ativo: 1,
+  ativo: true,
   empresa: 1,
 };
 

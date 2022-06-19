@@ -1,10 +1,10 @@
 import client from "../client";
 
-function generateToken(data: any) {
-  return client("token/").data(data).post();
+function login(data: any) {
+  return client("login/").data(data).post();
 }
 
-function registerUser(data: any) {
+function registerAccount(data: any) {
   return client("usuario/").data(data).post();
 }
 
@@ -13,6 +13,7 @@ function getSelfAccount(data: any) {
 }
 
 export default {
-  generateToken,
-  registerUser,
+  login,
+  registerAccount,
+  getSelfAccount,
 };
