@@ -21,7 +21,7 @@ const Header = () => {
   const [isProfileOpen, setProfileOpen] = useState(false);
 
   return (
-    <div className='w-full mx-auto max-w-[310px] md:max-w-[738px] xl:max-w-[1220px] mb-9 duration-300'>
+    <div className='flex w-full flex-col'>
       <Modal
         showModal={isProfileOpen}
         onCloseModal={() => setProfileOpen(false)}
