@@ -60,19 +60,17 @@ export interface AccountState {
 }
 
 export interface Profile {
+  ativo: boolean;
   nome: string;
   sobrenome: string;
   cpf: string;
   email: string;
   username: string;
   telefone: string;
-  password: string;
-  confirmPassword: string;
   formacao: string;
   perfil: string;
   uf: number | string;
   empresa: number;
-  ativo: boolean | number;
 }
 
 export interface LoginProfile {
@@ -82,17 +80,6 @@ export interface LoginProfile {
 }
 
 export interface RegisterProfile extends Profile {
-  nome: string;
-  sobrenome: string;
-  cpf: string;
-  email: string;
-  username: string;
-  telefone: string;
   password: string;
   confirmPassword: string;
-  formacao: string;
-  perfil: string;
-  uf: number | string;
-  empresa: number;
-  ativo: boolean | number;
 }

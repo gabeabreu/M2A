@@ -8,7 +8,7 @@ import Button from '../../Button';
 import { InputFormik, SelectFormik } from '../../index';
 import formSchema from './formSchema';
 
-const RegisterForm = () => {
+const EditForm = () => {
   const dispatch = useDispatch();
   const { general, account } = useSelector((state) => state);
 
@@ -30,56 +30,41 @@ const RegisterForm = () => {
   return (
     <Formik onSubmit={(values) => handleSubmit({ ...values })} {...formSchema}>
       <Form>
-        <div className='flex'>
+        <div className='flex px-10 pt-10'>
           <div className='md:col-span-2'>
             <div className='grid grid-cols-12 gap-x-6'>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik name='nome' placeholder='João' label='Nome' />
+                <InputFormik name='cnpj' label='CNPJ' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik
-                  name='sobrenome'
-                  placeholder='Silva'
-                  label='Sobrenome'
-                />
+                <InputFormik name='razao_social' label='Razão social' />
               </div>
 
               <div className='flex flex-col col-span-12 sm:col-span-7'>
-                <InputFormik
-                  name='cpf'
-                  placeholder='000.000.000-00'
-                  label='CPF'
-                />
+                <InputFormik name='fantasia' label='Fantasia' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-5'>
                 <InputFormik
-                  name='telefone'
-                  placeholder='(00) 0 0000-0000'
-                  label='Telefone'
+                  name='num_empregados'
+                  label='Número de empregados'
                 />
               </div>
 
               <div className='flex flex-col col-span-12 sm:col-span-12'>
-                <InputFormik
-                  name='email'
-                  placeholder='exemplo@email.com'
-                  label='Email'
-                />
+                <InputFormik name='dt_ano_inicio' label='Ano de início' />
               </div>
 
               <div className='col-span-12 sm:col-span-5'>
                 <SelectFormik
-                  name='uf'
-                  placeholder='DF'
-                  label='Estado'
+                  name='telefone'
+                  label='Telefone'
                   data={general.uf}
                 />
               </div>
               <div className='col-span-12 sm:col-span-7'>
                 <SelectFormik
-                  name='formacao'
-                  placeholder='Superior'
-                  label='Formação'
+                  name='inscricao_estadual'
+                  label='Inscrição estadual'
                   data={[
                     { label: 'Analfabeto', value: 'analfabeto' },
                     { label: 'Primeiro grau', value: 'primeiro grau' },
@@ -95,19 +80,51 @@ const RegisterForm = () => {
               </div>
 
               <div className='flex flex-col col-span-12 sm:col-span-6'>
-                <InputFormik
-                  name='password'
-                  type='password'
-                  placeholder='••••••'
-                  label='Senha'
-                />
+                <InputFormik name='fax' label='Fax' />
               </div>
               <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='celular' label='Celular' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='ds_negocio' label='Descrição do negócio' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='missao' label='Missão' />
+              </div>
+
+              <div className='flex flex-col col-span-12 sm:col-span-7'>
+                <InputFormik name='visao' label='Visão' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-5'>
+                <InputFormik name='Valores' label='Valores' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='grupo' label='Grupo' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='segmento' label='Segmento' />
+              </div>
+
+              <div className='flex flex-col col-span-12 sm:col-span-7'>
+                <InputFormik name='setor' label='Setor' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-5'>
+                <InputFormik name='tipo_industria' label='Tipo de indústria' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='faturamento' label='Faturamento' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-6'>
+                <InputFormik name='projeto' label='Projeto' />
+              </div>
+
+              <div className='flex flex-col col-span-12 sm:col-span-7'>
+                <InputFormik name='endereco' label='Endereço' />
+              </div>
+              <div className='flex flex-col col-span-12 sm:col-span-5'>
                 <InputFormik
-                  name='confirmPassword'
-                  type='password'
-                  placeholder='••••••'
-                  label='Confimar senha'
+                  name='valor_arrecadacao'
+                  label='Valor arrecadação'
                 />
               </div>
             </div>
@@ -115,11 +132,11 @@ const RegisterForm = () => {
         </div>
 
         <div className='mt-5'>
-          <Button title='Registrar' loading={account.loading} />
+          <Button title='Salvar' loading={account.loading} />
         </div>
       </Form>
     </Formik>
   );
 };
 
-export default RegisterForm;
+export default EditForm;
