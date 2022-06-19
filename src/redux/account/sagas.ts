@@ -48,11 +48,16 @@ function* registerAccountSuccess(data) {
   );
 }
 
+function clearData() {
+  showToast("Deslogado com sucesso!");
+}
+
 function* generalSaga() {
   yield all([takeLatest(AccountTypes.GET_ACCOUNT_REQUEST, getAccount)]);
   yield all([
     takeLatest(AccountTypes.REGISTER_ACCOUNT_REQUEST, registerAccount),
   ]);
+  yield all([takeLatest(AccountTypes.CLEAR_DATA, clearData)]);
 }
 
 export default generalSaga;

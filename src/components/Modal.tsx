@@ -43,8 +43,8 @@ const Modal: React.FC<Props> = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel
-              className={`relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all max-w-xs sm:max-w-md w-full ${
-                size === "small" && "max-w-xs sm:max-w-xs"
+              className={`relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all ${
+                size === "small" && ""
               }`}
             >
               {closeButton && (
