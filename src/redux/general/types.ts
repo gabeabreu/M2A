@@ -1,4 +1,6 @@
 /* eslint-disable no-shadow */
+import { GenericData } from "../../types";
+
 /* eslint-disable no-unused-vars */
 export enum GeneralTypes {
   GET_UF_REQUEST = "@general/GET_UF_REQUEST",
@@ -12,7 +14,7 @@ export interface GetGeneral {
 
 export interface GetGeneralSuccess {
   type: GeneralTypes.GET_UF_SUCCESS;
-  payload: { data: UF[] };
+  payload: { data: GenericData[] };
 }
 
 export interface GetGeneralFailure {
@@ -26,11 +28,5 @@ export type GeneralActionTypes =
 
 export interface GeneralState {
   loading: boolean;
-  uf: UF[] | null;
-}
-
-export interface UF {
-  id: number;
-  sg_uf: string;
-  nome_uf: string;
+  uf: GenericData[] | null;
 }

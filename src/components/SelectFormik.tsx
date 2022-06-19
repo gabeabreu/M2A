@@ -3,8 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 interface Item {
-  name: string;
-  key: string;
+  value: string;
+  label: string;
 }
 
 interface Props {
@@ -72,11 +72,12 @@ const InputFormik: React.FC<Props> = ({
           value={values[name]}
           placeholder={placeholder}
         >
-          {data.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.name}
-            </option>
-          ))}
+          {data &&
+            data.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
         </Field>
         <FaChevronDown color={"#989898"} className="absolute right-3 top-3" />
       </div>

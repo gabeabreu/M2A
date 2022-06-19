@@ -17,7 +17,7 @@ const reducer: Reducer<GeneralState> = (
       return { ...state, loading: true };
 
     case GeneralTypes.GET_UF_SUCCESS:
-      return { ...state, loading: false, data: payload.data };
+      return { ...state, loading: false, uf: payload.data };
 
     case GeneralTypes.GET_UF_FAILURE:
       return { ...state, loading: false };

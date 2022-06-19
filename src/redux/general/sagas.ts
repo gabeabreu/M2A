@@ -3,21 +3,16 @@ import { all, call, delay, put, takeLatest } from "redux-saga/effects";
 import { GeneralActions } from ".";
 import { GeneralTypes } from "./types";
 import * as api from "../../services/index";
+import * as helpers from "../../helpers/index";
 
 function* getUf() {
   try {
-    console.log("Ran sagas");
-    const data = yield call(api.general.getUf);
-    console.log(data);
-    // yield put(
-    //   AccountActions.getUfSuccess({
-    //     name: "Vitor",
-    //     surname: "Machado",
-    //     email: "test@email.com",
-    //   })
-    // );
+    const { data } = yield call(api.general.getUf);
+    const formatedUf = helpers.formData.formatUf(data.results);
+
+    yield put(GeneralActions.getUfSuccess(formatedUf));
   } catch (err) {
-    // yield put(AccountActions.getUfFailure());
+    yield put(GeneralActions.getUfFailure());
     console.log(err);
   }
 }

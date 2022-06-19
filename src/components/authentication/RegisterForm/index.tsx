@@ -2,16 +2,19 @@ import { Formik, Field, Form } from "formik";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { GeneralActions } from "../../../redux/general";
+import { useSelector } from "../../../redux/hooks";
 import { InputFormik, SelectFormik } from "../../index";
 import formSchema from "./formSchema";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const { general } = useSelector((state) => state);
   function handleSubmit(values) {
     console.log(values);
   }
+
   useEffect(() => {
-    console.log("disparo");
     dispatch(GeneralActions.getUfRequest());
   }, []);
 
@@ -60,10 +63,7 @@ const RegisterForm = () => {
                   name="uf"
                   placeholder="DF"
                   label="Estado"
-                  data={[
-                    { name: "Test", key: "test" },
-                    { name: "Test2", key: "test2" },
-                  ]}
+                  data={general.uf}
                 />
               </div>
               <div className="col-span-12 sm:col-span-7">
@@ -72,14 +72,14 @@ const RegisterForm = () => {
                   placeholder="Superior"
                   label="Formação"
                   data={[
-                    { name: "Analfabeto", key: "analfabeto" },
-                    { name: "Primeiro grau", key: "primeiro grau" },
-                    { name: "Segundo grau", key: "segundo grau" },
-                    { name: "Superior", key: "superior" },
-                    { name: "Pós-graduação", key: "pos graduacao" },
+                    { label: "Analfabeto", value: "analfabeto" },
+                    { label: "Primeiro grau", value: "primeiro grau" },
+                    { label: "Segundo grau", value: "segundo grau" },
+                    { label: "Superior", value: "superior" },
+                    { label: "Pós-graduação", value: "pos graduacao" },
                     {
-                      name: "Mestrado e/ou Doutorado",
-                      key: "mestrado ou doutorado",
+                      label: "Mestrado e/ou Doutorado",
+                      value: "mestrado ou doutorado",
                     },
                   ]}
                 />

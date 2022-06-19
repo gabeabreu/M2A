@@ -1,11 +1,12 @@
 import { action } from "typesafe-actions";
-import { GeneralActionTypes, GeneralTypes, UF } from "./types";
+import { GenericData } from "../../types";
+import { GeneralActionTypes, GeneralTypes } from "./types";
 
 export function getUfRequest(): GeneralActionTypes {
   return action(GeneralTypes.GET_UF_REQUEST);
 }
 
-export function getUfSuccess(data: UF[]): GeneralActionTypes {
+export function getUfSuccess(data: GenericData[]): GeneralActionTypes {
   return action(GeneralTypes.GET_UF_SUCCESS, { data });
 }
 
