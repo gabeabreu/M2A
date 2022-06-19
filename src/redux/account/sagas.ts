@@ -5,15 +5,18 @@ import { AccountTypes, GetAccount, RegisterAccount } from "./types";
 import { customHistory } from "../../routes/CustomBrowserRouter";
 import * as api from "../../services/index";
 import * as helpers from "../../helpers/index";
+import showToast from "../../helpers/showToast";
 
 function* getAccount({ payload: { data } }: GetAccount) {
   try {
     const { data: returnData } = yield call(api.account.login, data);
 
+    showToast("Logado com sucesso!", "success");
     yield getAccountSuccess(returnData.user, returnData.access);
   } catch (err) {
     yield put(AccountActions.getAccountFailure());
-    console.log(err);
+
+    showToast(helpers.formErrors.formatError(err), "error");
   }
 }
 
@@ -26,10 +29,12 @@ function* registerAccount({ payload: { data } }: RegisterAccount) {
   try {
     const { data: returnData } = yield call(api.account.registerAccount, data);
 
+    showToast("Registrado com sucesso!", "success");
     yield registerAccountSuccess(returnData);
   } catch (err) {
     yield put(AccountActions.registerAccountFailure());
-    console.log(err);
+
+    showToast(helpers.formErrors.formatError(err), "error");
   }
 }
 

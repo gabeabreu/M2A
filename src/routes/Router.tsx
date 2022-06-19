@@ -10,7 +10,7 @@ import { CustomBrowserRouter } from "./CustomBrowserRouter";
 const Router = () => {
   const { account } = useSelector((state) => state);
   const isAuthenticated = account.token;
-
+  // console.log(isAuthenticated);
   return (
     <CustomBrowserRouter basename={"/"}>
       <Routes>
