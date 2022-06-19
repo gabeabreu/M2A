@@ -12,9 +12,9 @@ import Endereco from './Endereco';
 import InformacoesComplementares from './InformacoesComplementares';
 
 const tabs = [
-  { name: 'Dados da Empresa', id: 0 },
-  { name: 'Endereço', id: 1 },
-  { name: 'Informações Complementares', id: 2 },
+  { name: 'Dados da Empresa', mobileName: '1', id: 0 },
+  { name: 'Endereço', mobileName: '2', id: 1 },
+  { name: 'Informações Complementares', mobileName: '3', id: 2 },
 ];
 
 const EditForm = () => {
@@ -33,6 +33,18 @@ const EditForm = () => {
     );
   }
 
+  const [isMobileScreen, setIsMobileScreen] = useState<boolean>();
+
+  const updateMedia = () => {
+    setIsMobileScreen(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    updateMedia();
+    window.addEventListener('resize', updateMedia, { passive: true });
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
+
   useEffect(() => {
     dispatch(GeneralActions.getUfRequest());
   }, []);
@@ -49,7 +61,7 @@ const EditForm = () => {
             }`}
             onClick={() => setActiveTab(tab.id)}
           >
-            {tab.name}
+            {isMobileScreen ? tab.mobileName : tab.name}
           </Tab>
         ))}
       </Tab.List>
