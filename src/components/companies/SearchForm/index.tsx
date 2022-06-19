@@ -55,10 +55,10 @@ const SearchForm = () => {
             />
           </div>
         </div>
-        <div>
+        <div className='flex w-full justify-end p-5'>
           <button
             type='submit'
-            className='mx-auto mb-14 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
+            className='mb-14 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
           >
             PESQUISAR
           </button>

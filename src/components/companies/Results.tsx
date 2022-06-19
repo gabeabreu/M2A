@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
+import InputFormik from '../InputFormik';
+import Modal from '../Modal';
+import EditForm from './EditForm';
 
 /* This example requires Tailwind CSS v2.0+ */
-const people = [
+const company = [
   {
     nome: 'Lindsay Walton',
     empresa_vinculada: 'Front-end Developer',
@@ -26,8 +30,17 @@ const people = [
 ];
 
 const Results = () => {
+  const [editOpen, setEditOpen] = useState(false);
+
   return (
     <div className='px-4 sm:px-6 lg:px-8 mb-32'>
+      <Modal
+        showModal={editOpen}
+        closeButton
+        onCloseModal={() => setEditOpen(false)}
+      >
+        <EditForm />
+      </Modal>
       <div className='sm:flex sm:items-center'></div>
       <div className='mt-8 flex flex-col'>
         <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8'>
@@ -63,7 +76,7 @@ const Results = () => {
                   </tr>
                 </thead>
                 <tbody className='divide-y divide-gray-200 bg-white'>
-                  {people.map((person) => (
+                  {company.map((person) => (
                     <tr key={person.nome}>
                       <td className='whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
                         {person.nome}
@@ -75,7 +88,10 @@ const Results = () => {
                         {person.uf}
                       </td>
                       <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'>
-                        <button className='text-main-blue'>
+                        <button
+                          className='text-main-blue'
+                          onClick={() => setEditOpen(true)}
+                        >
                           <FaEdit />
                         </button>
                       </td>
