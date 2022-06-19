@@ -4,6 +4,7 @@ import Button from "../Button";
 import InputFormik from "../InputFormik";
 import Modal from "../Modal";
 import EditForm from "./EditForm";
+import { IoMdAdd } from "react-icons/io";
 
 /* This example requires Tailwind CSS v2.0+ */
 const company = [
@@ -50,7 +51,11 @@ const Results = () => {
               <div className="flex p-5 w-full justify-between items-center bg-gray-200">
                 <h2 className="ml-0 text-2xl font-medium">Lista de empresas</h2>
                 <div className="mr-0">
-                  <Button title="Cadastrar empresa" color="#32c841" />
+                  <Button
+                    title="Cadastrar empresa"
+                    color="#32c841"
+                    icon={<IoMdAdd />}
+                  />
                 </div>
               </div>
               <table className="min-w-full divide-y divide-gray-300">
