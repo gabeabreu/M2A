@@ -60,6 +60,7 @@ export interface AccountState {
 }
 
 export interface Profile {
+  id?: number;
   ativo: boolean;
   nome: string;
   sobrenome: string;
