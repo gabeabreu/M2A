@@ -44,15 +44,10 @@ const InputFormik: React.FC<Props> = ({
     inputRef.current && inputRef.current.focus();
   };
 
-  const textAlignVertical = multiline ? "top" : "center";
-
-  // console.log(setErrors({ ...errors, name: Object.keys(errors) }));
-
   useEffect(() => {
     if (autoFocus) onFocusHandler();
   }, []);
 
-  console.log(error);
   return (
     <>
       {label && (
@@ -65,7 +60,6 @@ const InputFormik: React.FC<Props> = ({
           className={`${
             error ? "border-red-400" : "mb-8 border-gray-300"
           } appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-          focus={focus}
           name={name}
           error={!disableErrorMessage ? error : undefined}
           ref={inputRef}
@@ -77,12 +71,9 @@ const InputFormik: React.FC<Props> = ({
           }}
           type={type}
           onBlur={() => setFocus(false)}
-          placeholderTextColor={"#bdbdbd"}
           value={values[name]}
           placeholder={placeholder}
-          onChangeText={(text) => setFieldValue(name, text)}
           multiline={multiline}
-          textAlignVertical={textAlignVertical}
         />
       </div>
       {error || description ? (
