@@ -1,17 +1,25 @@
 import { Formik, Field, Form } from "formik";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { AccountActions } from "../../../redux/account";
 import { GeneralActions } from "../../../redux/general";
 import { useSelector } from "../../../redux/hooks";
-import { InputFormik, SelectFormik } from "../../index";
+import { InputFormik, SelectFormik, Button } from "../../index";
 import formSchema from "./formSchema";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const { general, account } = useSelector((state) => state);
 
-  const { general } = useSelector((state) => state);
   function handleSubmit(values) {
-    console.log(values);
+    delete values.confirmPassword;
+    dispatch(
+      AccountActions.registerAccountRequest({
+        ...values,
+        uf: general.uf.find((uf) => uf.value === values.uf).id,
+        username: values.email,
+      })
+    );
   }
 
   useEffect(() => {
@@ -19,7 +27,7 @@ const RegisterForm = () => {
   }, []);
 
   return (
-    <Formik onSubmit={handleSubmit} {...formSchema}>
+    <Formik onSubmit={(values) => handleSubmit({ ...values })} {...formSchema}>
       <Form>
         <div className="flex">
           <div className="md:col-span-2">
@@ -106,12 +114,7 @@ const RegisterForm = () => {
         </div>
 
         <div className="mt-5">
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500"
-          >
-            Registrar
-          </button>
+          <Button title="Registrar" loading={account.loading} />
         </div>
       </Form>
     </Formik>

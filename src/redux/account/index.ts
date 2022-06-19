@@ -23,6 +23,15 @@ const reducer: Reducer<AccountState> = (
     case AccountTypes.GET_ACCOUNT_FAILURE:
       return { ...state, loading: false };
 
+    case AccountTypes.REGISTER_ACCOUNT_REQUEST:
+      return { ...state, loading: true };
+
+    case AccountTypes.REGISTER_ACCOUNT_SUCCESS:
+      return { ...state, loading: false, data: payload.data };
+
+    case AccountTypes.REGISTER_ACCOUNT_FAILURE:
+      return { ...state, loading: false };
+
     default:
       return state;
   }

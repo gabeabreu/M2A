@@ -4,10 +4,15 @@ export enum AccountTypes {
   GET_ACCOUNT_REQUEST = "@general/GET_ACCOUNT_REQUEST",
   GET_ACCOUNT_SUCCESS = "@general/GET_ACCOUNT_SUCCESS",
   GET_ACCOUNT_FAILURE = "@general/GET_ACCOUNT_FAILURE",
+
+  REGISTER_ACCOUNT_REQUEST = "@general/REGISTER_ACCOUNT_REQUEST",
+  REGISTER_ACCOUNT_SUCCESS = "@general/REGISTER_ACCOUNT_SUCCESS",
+  REGISTER_ACCOUNT_FAILURE = "@general/REGISTER_ACCOUNT_FAILURE",
 }
 
 export interface GetAccount {
   type: AccountTypes.GET_ACCOUNT_REQUEST;
+  payload: { data: LoginProfile };
 }
 
 export interface GetAccountSuccess {
@@ -19,10 +24,27 @@ export interface GetAccountFailure {
   type: AccountTypes.GET_ACCOUNT_FAILURE;
 }
 
+export interface RegisterAccount {
+  type: AccountTypes.REGISTER_ACCOUNT_REQUEST;
+  payload: { data: RegisterProfile };
+}
+
+export interface RegisterAccountSuccess {
+  type: AccountTypes.REGISTER_ACCOUNT_SUCCESS;
+  payload: { data: Profile };
+}
+
+export interface RegisterAccountFailure {
+  type: AccountTypes.REGISTER_ACCOUNT_FAILURE;
+}
+
 export type AccountActionTypes =
   | GetAccount
   | GetAccountSuccess
-  | GetAccountFailure;
+  | GetAccountFailure
+  | RegisterAccount
+  | RegisterAccountSuccess
+  | RegisterAccountFailure;
 
 export interface AccountState {
   loading: boolean;
@@ -34,4 +56,26 @@ export interface Profile {
   name: string;
   surname: string;
   email: string;
+}
+
+export interface LoginProfile {
+  email?: string;
+  username?: string;
+  password: string;
+}
+
+export interface RegisterProfile {
+  nome: string;
+  sobrenome: string;
+  cpf: string;
+  email: string;
+  username: string;
+  telefone: string;
+  password: string;
+  confirmPassword: string;
+  formacao: string;
+  perfil: string;
+  uf: number | string;
+  empresa: number;
+  ativo: boolean | number;
 }

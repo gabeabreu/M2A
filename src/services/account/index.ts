@@ -1,18 +1,18 @@
 import client from "../client";
 
-function subscribeNotifications(deviceId: string) {
-  return (
-    client("accounts")
-      .remoteMethod("notifications/subscribe")
-      // .filter({
-      //   include: ["account", "location", "discoveryOptions", "pets"],
-      //   count: ["followers"],
-      // })
-      .data({ deviceId })
-      .post()
-  );
+function generateToken(data: any) {
+  return client("token/").data(data).post();
+}
+
+function registerUser(data: any) {
+  return client("usuario/").data(data).post();
+}
+
+function getSelfAccount(data: any) {
+  return client("usuario/").data(data).post();
 }
 
 export default {
-  subscribeNotifications,
+  generateToken,
+  registerUser,
 };

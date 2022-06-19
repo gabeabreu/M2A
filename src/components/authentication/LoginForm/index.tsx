@@ -1,11 +1,17 @@
 import { Formik, Field, Form } from "formik";
 import { useEffect } from "react";
-import { InputFormik } from "../../index";
+import { useDispatch } from "react-redux";
+import { AccountActions } from "../../../redux/account";
+import { useSelector } from "../../../redux/hooks";
+import { InputFormik, Button } from "../../index";
 import formSchema from "./formSchema";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const { account } = useSelector((state) => state);
+
   function handleSubmit(values) {
-    console.log(values);
+    dispatch(AccountActions.getAccountRequest(values));
   }
 
   return (
@@ -49,14 +55,8 @@ const LoginForm = () => {
             </a>
           </div>
         </div>
-
-        <div>
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500"
-          >
-            Entrar
-          </button>
+        <div className="mt-12">
+          <Button title="Entrar" loading={account.loading} />
         </div>
       </Form>
     </Formik>

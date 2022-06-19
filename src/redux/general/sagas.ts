@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { all, call, delay, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import { GeneralActions } from ".";
 import { GeneralTypes } from "./types";
 import * as api from "../../services/index";

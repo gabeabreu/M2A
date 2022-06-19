@@ -1,18 +1,21 @@
 import * as Yup from "yup";
 import { formErrors } from "../../../helpers";
+import { RegisterProfile } from "../../../redux/account/types";
 
-const initialValues: any = {
-  nome: "",
-  sobrenome: "",
-  email: "",
+const initialValues: RegisterProfile = {
+  nome: "Vitor",
+  sobrenome: "Almeida",
+  email: "vito@email.com",
+  cpf: "06008344170",
   username: "",
-  telefone: "",
-  password: "",
-  confirmPassword: "",
+  telefone: "61999944896",
+  password: "123456",
+  confirmPassword: "123456",
   formacao: "analfabeto",
-  perfil: "user",
+  perfil: "usuario",
   uf: "AC",
-  ativo: true,
+  ativo: 1,
+  empresa: 1,
 };
 
 const validationSchema = Yup.object().shape({
@@ -33,6 +36,7 @@ const validationSchema = Yup.object().shape({
   formacao: Yup.string().required(formErrors.errorMessages.required),
   uf: Yup.string().required(formErrors.errorMessages.required),
   telefone: Yup.string().required(formErrors.errorMessages.required),
+  cpf: Yup.string().required(formErrors.errorMessages.required),
 });
 
 // async function validate({ birthday, email }: AccountRegister) {
