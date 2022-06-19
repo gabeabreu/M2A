@@ -1,8 +1,10 @@
+import { Tab } from "@headlessui/react";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import Button from "../Button";
 import InputFormik from "../InputFormik";
 import Modal from "../Modal";
+import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import { IoMdAdd } from "react-icons/io";
 
@@ -33,6 +35,7 @@ const company = [
 
 const Results = () => {
   const [editOpen, setEditOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
 
   return (
     <div className="mb-32">
@@ -41,17 +44,29 @@ const Results = () => {
         closeButton
         onCloseModal={() => setEditOpen(false)}
       >
-        <EditForm />
+        <div className="px-5 py-10">
+          <EditForm />
+        </div>
+      </Modal>
+      <Modal
+        showModal={addOpen}
+        closeButton
+        onCloseModal={() => setAddOpen(false)}
+      >
+        <div className="px-5 py-10">
+          <AddForm />
+        </div>
       </Modal>
       <div className="sm:flex sm:items-center"></div>
       <div className="mt-8 flex flex-col">
-        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 px-1 sm:px-0">
+        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-1 sm:px-0">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-2xl md:rounded-lg">
               <div className="flex p-5 w-full justify-between items-center bg-gray-200">
                 <h2 className="ml-0 text-2xl font-medium">Lista de empresas</h2>
                 <div className="mr-0">
                   <Button
+                    onClick={() => setAddOpen(true)}
                     title="Cadastrar empresa"
                     color="#32c841"
                     icon={<IoMdAdd />}
