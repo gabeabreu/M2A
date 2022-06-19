@@ -10,46 +10,55 @@ const SearchForm = () => {
   return (
     <Formik onSubmit={handleSubmit} {...formSchema}>
       <Form>
-        <div className='md:flex mt-5'>
-          <InputFormik name='pesquisa' placeholder='Pesquisar' />
-          <SelectFormik
-            name='uf'
-            label='Estado'
-            data={[
-              { name: 'Test', key: 'test' },
-              { name: 'Test2', key: 'test2' },
-            ]}
-          />
-          <SelectFormik
-            vertical
-            name='empresa_vinculada'
-            label='Empresa vinculada'
-            data={[
-              { name: 'Test', key: 'test' },
-              { name: 'Test2', key: 'test2' },
-            ]}
-          />
-          <SelectFormik
-            name='arrecadacao'
-            label='Arrecadação'
-            data={[
-              { name: 'Test', key: 'test' },
-              { name: 'Test2', key: 'test2' },
-            ]}
-          />
-          <SelectFormik
-            name='setor'
-            label='Setor'
-            data={[
-              { name: 'Test', key: 'test' },
-              { name: 'Test2', key: 'test2' },
-            ]}
-          />
+        <div className='md:flex md:justify-around md:items-end mt-5 w-full'>
+          <div className='w-full md:p-5 xl:p-5'>
+            <InputFormik name='pesquisa' placeholder='Pesquisar' />
+          </div>
+          <div className='flex flex-col w-full md:p-5'>
+            <p>Estado</p>
+            <SelectFormik
+              name='uf'
+              data={[
+                { value: 'Test', label: 'test' },
+                { value: 'Test2', label: 'test2' },
+              ]}
+            />
+          </div>
+          <div className='flex flex-col w-full md:p-5'>
+            <p>Empresa vinculada</p>
+            <SelectFormik
+              name='empresa_vinculada'
+              data={[
+                { value: 'Test', label: 'test' },
+                { value: 'Test2', label: 'test2' },
+              ]}
+            />
+          </div>
+          <div className='flex flex-col w-full md:p-5'>
+            <p>Arrecadação</p>
+            <SelectFormik
+              name='arrecadacao'
+              data={[
+                { value: 'Test', label: 'test' },
+                { value: 'Test2', label: 'test2' },
+              ]}
+            />
+          </div>
+          <div className='flex flex-col w-full md:p-5'>
+            <p>Setor</p>
+            <SelectFormik
+              name='setor'
+              data={[
+                { value: 'Test', label: 'test' },
+                { value: 'Test2', label: 'test2' },
+              ]}
+            />
+          </div>
         </div>
-        <div className='mt-5'>
+        <div>
           <button
             type='submit'
-            className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
+            className='mx-auto mb-14 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-md font-medium text-white bg-secondary-blue hover:bg-[#1289d9] focus:outline-none duration-500'
           >
             PESQUISAR
           </button>

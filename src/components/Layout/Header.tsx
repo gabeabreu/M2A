@@ -13,7 +13,7 @@ const Header = () => {
   const activeTab = location.pathname;
 
   return (
-    <div className='w-full mx-auto max-w-[310px] md:max-w-[738px] xl:max-w-[1220px] mb-9 duration-300'>
+    <div>
       <div className='flex justify-between my-5'>
         <img
           src={require('../../assets/images/logo.png')}

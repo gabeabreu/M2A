@@ -21,7 +21,7 @@ interface Props {
   vertical?: boolean;
 }
 
-const InputFormik: React.FC<Props> = ({
+const SelectFormik: React.FC<Props> = ({
   autoFocus,
   data,
   name,
@@ -91,4 +91,4 @@ const InputFormik: React.FC<Props> = ({
   );
 };
 
-export default InputFormik;
+export default SelectFormik;
