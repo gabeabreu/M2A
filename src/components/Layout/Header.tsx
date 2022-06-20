@@ -4,11 +4,13 @@ import { useSelector } from "../../redux/hooks";
 import Modal from "../Modal";
 import Perfil from "./Perfil";
 import { FaChevronDown } from "react-icons/fa";
+import { BsFillGearFill } from "react-icons/bs";
 
 const tabs = [
   { name: "Empresas", href: "/companies" },
-  { name: "Questionário", href: "/questionnaires" },
-  { name: "Diagnóstico", href: "/diagnostics" },
+  { name: "Questionários", href: "/questionnaires" },
+  { name: "Diagnósticos", href: "/diagnostics" },
+  { name: "Perguntas", href: "/questions" },
   { name: "Usuários", href: "/users" },
 ];
 
@@ -89,7 +91,16 @@ const Header = () => {
                 } group relative min-w-0 flex-1 overflow-hidden bg-main-blue hover:bg-[#00558a]  py-[0.75rem] px-4 text-sm font-medium text-center border-b-2 focus:z-10 duration-500`}
                 aria-current={tab.href === activeTab ? "page" : undefined}
               >
-                <span>{tab.name}</span>
+                <span className="flex flex-col">
+                  {tab.name === "Usuários" ? (
+                    <div className="relative flex justify-center items-center">
+                      <BsFillGearFill className="text-[0.7rem] absolute ml-[5.5rem]" />
+                      <span>{tab.name}</span>
+                    </div>
+                  ) : (
+                    tab.name
+                  )}
+                </span>
               </div>
             </Link>
           ))}

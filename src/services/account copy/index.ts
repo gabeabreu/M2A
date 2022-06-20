@@ -12,8 +12,13 @@ function registerCompany(data: any) {
   return client("empresa/").data(data).post();
 }
 
+function deleteCompany(companyId: string) {
+  return client("empresa").remoteMethod(companyId).delete();
+}
+
 export default {
   getCompanies,
   getCompany,
   registerCompany,
+  deleteCompany,
 };

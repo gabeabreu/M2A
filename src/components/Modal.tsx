@@ -1,6 +1,7 @@
 import { Fragment, ReactNode } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoClose } from "react-icons/io5";
+import { HiOutlineExclamation, HiOutlineX } from "react-icons/hi";
 
 interface Props {
   showModal: boolean;
@@ -48,11 +49,15 @@ const Modal: React.FC<Props> = ({
               }`}
             >
               {closeButton && (
-                <div
-                  className="absolute cursor-pointer top-[1.3rem] right-[1.3rem]"
-                  onClick={() => onCloseModal()}
-                >
-                  <IoClose className="text-xl text-[#2a2a2a]" />
+                <div className="z-50 hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+                  <button
+                    type="button"
+                    className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
+                    onClick={() => onCloseModal()}
+                  >
+                    <span className="sr-only">Close</span>
+                    <HiOutlineX className="h-6 w-6" aria-hidden="true" />
+                  </button>
                 </div>
               )}
               {children}

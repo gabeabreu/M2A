@@ -16,8 +16,14 @@ export enum CompaniesTypes {
   REGISTER_COMPANY_SUCCESS = "@companies/REGISTER_COMPANY_SUCCESS",
   REGISTER_COMPANY_FAILURE = "@companies/REGISTER_COMPANY_FAILURE",
 
+  DELETE_COMPANY_REQUEST = "@companies/DELETE_COMPANY_REQUEST",
+  DELETE_COMPANY_SUCCESS = "@companies/DELETE_COMPANY_SUCCESS",
+  DELETE_COMPANY_FAILURE = "@companies/DELETE_COMPANY_FAILURE",
+
   SET_EDIT_COMPANY = "@companies/SET_EDIT_COMPANY",
   REMOVE_EDIT_COMPANY = "@companies/REMOVE_EDIT_COMPANY",
+
+  CLEAR_ERROR = "@companies/CLEAR_ERROR",
 
   CLEAR_DATA = "@companies/CLEAR_DATA",
 }
@@ -62,6 +68,18 @@ export interface RegisterCompanySuccess {
 export interface RegisterCompanyFailure {
   type: CompaniesTypes.REGISTER_COMPANY_FAILURE;
 }
+export interface DeleteCompany {
+  type: CompaniesTypes.DELETE_COMPANY_REQUEST;
+  payload: { companyId: number };
+}
+
+export interface DeleteCompanySuccess {
+  type: CompaniesTypes.DELETE_COMPANY_SUCCESS;
+}
+
+export interface DeleteCompanyFailure {
+  type: CompaniesTypes.DELETE_COMPANY_FAILURE;
+}
 
 export interface SetEditCompany {
   type: CompaniesTypes.SET_EDIT_COMPANY;
@@ -70,6 +88,10 @@ export interface SetEditCompany {
 
 export interface RemoveEditCompany {
   type: CompaniesTypes.REMOVE_EDIT_COMPANY;
+}
+
+export interface ClearError {
+  type: CompaniesTypes.CLEAR_ERROR;
 }
 
 export interface ClearData {
@@ -86,8 +108,12 @@ export type CompaniesActionTypes =
   | RegisterCompany
   | RegisterCompanySuccess
   | RegisterCompanyFailure
+  | DeleteCompany
+  | DeleteCompanySuccess
+  | DeleteCompanyFailure
   | SetEditCompany
   | RemoveEditCompany
+  | ClearError
   | ClearData;
 
 export interface CompaniesState {
@@ -95,6 +121,7 @@ export interface CompaniesState {
   editCompany: Company | null;
   company: { data: Company[] | null };
   companies: { data: Company[] | null; count: number | null };
+  error: boolean | null;
 }
 
 export interface Company {

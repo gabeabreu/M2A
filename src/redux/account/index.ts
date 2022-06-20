@@ -9,6 +9,7 @@ const INITIAL_STATE: AccountState = {
   loading: false,
   data: null,
   token: null,
+  accountList: { data: null, count: null },
 };
 
 const reducer: Reducer<AccountState> = (
@@ -28,6 +29,22 @@ const reducer: Reducer<AccountState> = (
       };
 
     case AccountTypes.GET_ACCOUNT_FAILURE:
+      return { ...state, loading: false };
+
+    case AccountTypes.GET_ACCOUNTS_REQUEST:
+      return { ...state, loading: true };
+
+    case AccountTypes.GET_ACCOUNTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        accountList: {
+          data: payload.data,
+          count: payload.count,
+        },
+      };
+
+    case AccountTypes.GET_ACCOUNTS_FAILURE:
       return { ...state, loading: false };
 
     case AccountTypes.REGISTER_ACCOUNT_REQUEST:

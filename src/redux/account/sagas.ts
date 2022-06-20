@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { all, call, delay, put, takeLatest } from "redux-saga/effects";
 import { AccountActions } from ".";
-import { AccountTypes, GetAccount, RegisterAccount } from "./types";
+import { AccountTypes, GetAccount, Profile, RegisterAccount } from "./types";
 import { customHistory } from "../../routes/CustomBrowserRouter";
 import * as api from "../../services/index";
 import * as helpers from "../../helpers/index";
@@ -29,6 +29,23 @@ function* getAccountSuccess(data, token) {
 
   yield put(AccountActions.getAccountSuccess(data, token));
   customHistory.push("/companies");
+}
+
+function* getAccounts() {
+  try {
+    const { data: returnData } = yield call(api.account.getUsers);
+    console.log(returnData);
+
+    yield getAccountsSuccess(returnData.results, returnData.count);
+  } catch (err) {
+    yield put(AccountActions.getAccountsFailure());
+
+    showToast(helpers.formErrors.formatError(err), "error");
+  }
+}
+
+function* getAccountsSuccess(data: Profile[], count: number) {
+  yield put(AccountActions.getAccountsSuccess(data, count));
 }
 
 function* registerAccount({ payload: { data } }: RegisterAccount) {
@@ -61,6 +78,7 @@ function clearData() {
 
 function* generalSaga() {
   yield all([takeLatest(AccountTypes.GET_ACCOUNT_REQUEST, getAccount)]);
+  yield all([takeLatest(AccountTypes.GET_ACCOUNTS_REQUEST, getAccounts)]);
   yield all([
     takeLatest(AccountTypes.REGISTER_ACCOUNT_REQUEST, registerAccount),
   ]);

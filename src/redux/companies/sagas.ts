@@ -4,6 +4,7 @@ import { CompaniesActions } from ".";
 import {
   CompaniesTypes,
   Company,
+  DeleteCompany,
   GetCompanies,
   GetCompany,
   RegisterCompany,
@@ -63,8 +64,10 @@ function* registerCompany({ payload: { data } }: RegisterCompany) {
     yield registerCompanySuccess(data);
   } catch (err) {
     yield put(CompaniesActions.registerCompanyFailure());
-
     showToast(helpers.formErrors.formatError(err), "error");
+
+    yield delay(500);
+    yield put(CompaniesActions.clearError());
   }
 }
 
@@ -73,7 +76,33 @@ function* registerCompanySuccess(data) {
   yield put(CompaniesActions.getCompaniesRequest());
   yield put(CompaniesActions.removeEditCompany());
   showToast("Empresa cadastrada com sucesso!", "success");
+
+  yield delay(500);
+  yield put(CompaniesActions.clearError());
   customHistory.push("/companies");
+}
+
+function* deleteCompany({ payload: { companyId } }: DeleteCompany) {
+  try {
+    yield call(api.companies.deleteCompany, String(companyId));
+
+    yield deleteCompanySuccess();
+  } catch (err) {
+    yield put(CompaniesActions.deleteCompanyFailure());
+    showToast(helpers.formErrors.formatError(err), "error");
+
+    yield delay(500);
+    yield put(CompaniesActions.clearError());
+  }
+}
+
+function* deleteCompanySuccess() {
+  yield put(CompaniesActions.deleteCompanySuccess());
+  yield put(CompaniesActions.getCompaniesRequest());
+  showToast("Empresa deletada com sucesso!", "success");
+
+  yield delay(500);
+  yield put(CompaniesActions.clearError());
 }
 
 function clearData() {
@@ -85,6 +114,7 @@ function* companiesSaga() {
   yield all([takeLatest(CompaniesTypes.GET_COMPANIES_REQUEST, getCompanies)]);
   yield all([
     takeLatest(CompaniesTypes.REGISTER_COMPANY_REQUEST, registerCompany),
+    takeLatest(CompaniesTypes.DELETE_COMPANY_REQUEST, deleteCompany),
   ]);
   yield all([takeLatest(CompaniesTypes.CLEAR_DATA, clearData)]);
 }

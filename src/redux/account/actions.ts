@@ -22,6 +22,18 @@ export function getAccountFailure(): AccountActionTypes {
   return action(AccountTypes.GET_ACCOUNT_FAILURE);
 }
 
+export function getAccountsRequest(): AccountActionTypes {
+  return action(AccountTypes.GET_ACCOUNTS_REQUEST);
+}
+
+export function getAccountsSuccess(data: Profile[], count): AccountActionTypes {
+  return action(AccountTypes.GET_ACCOUNTS_SUCCESS, { data, count });
+}
+
+export function getAccountsFailure(): AccountActionTypes {
+  return action(AccountTypes.GET_ACCOUNT_FAILURE);
+}
+
 export function registerAccountRequest(
   data: RegisterProfile
 ): AccountActionTypes {

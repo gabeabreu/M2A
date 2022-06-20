@@ -5,6 +5,10 @@ export enum AccountTypes {
   GET_ACCOUNT_SUCCESS = "@general/GET_ACCOUNT_SUCCESS",
   GET_ACCOUNT_FAILURE = "@general/GET_ACCOUNT_FAILURE",
 
+  GET_ACCOUNTS_REQUEST = "@general/GET_ACCOUNTS_REQUEST",
+  GET_ACCOUNTS_SUCCESS = "@general/GET_ACCOUNTS_SUCCESS",
+  GET_ACCOUNTS_FAILURE = "@general/GET_ACCOUNTS_FAILURE",
+
   REGISTER_ACCOUNT_REQUEST = "@general/REGISTER_ACCOUNT_REQUEST",
   REGISTER_ACCOUNT_SUCCESS = "@general/REGISTER_ACCOUNT_SUCCESS",
   REGISTER_ACCOUNT_FAILURE = "@general/REGISTER_ACCOUNT_FAILURE",
@@ -24,6 +28,19 @@ export interface GetAccountSuccess {
 
 export interface GetAccountFailure {
   type: AccountTypes.GET_ACCOUNT_FAILURE;
+}
+
+export interface GetAccounts {
+  type: AccountTypes.GET_ACCOUNTS_REQUEST;
+}
+
+export interface GetAccountsSuccess {
+  type: AccountTypes.GET_ACCOUNTS_SUCCESS;
+  payload: { data: Profile[]; count: number };
+}
+
+export interface GetAccountsFailure {
+  type: AccountTypes.GET_ACCOUNTS_FAILURE;
 }
 
 export interface RegisterAccount {
@@ -48,6 +65,9 @@ export type AccountActionTypes =
   | GetAccount
   | GetAccountSuccess
   | GetAccountFailure
+  | GetAccounts
+  | GetAccountsSuccess
+  | GetAccountsFailure
   | RegisterAccount
   | RegisterAccountSuccess
   | RegisterAccountFailure
@@ -57,6 +77,7 @@ export interface AccountState {
   loading: boolean;
   data: Profile | null;
   token: number | null;
+  accountList: { data: Profile[] | null; count: number | null };
 }
 
 export interface Profile {

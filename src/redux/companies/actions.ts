@@ -40,12 +40,27 @@ export function registerCompanyFailure(): CompaniesActionTypes {
   return action(CompaniesTypes.REGISTER_COMPANY_FAILURE);
 }
 
+export function deleteCompanyRequest(companyId: number): CompaniesActionTypes {
+  return action(CompaniesTypes.DELETE_COMPANY_REQUEST, { companyId });
+}
+
+export function deleteCompanySuccess(): CompaniesActionTypes {
+  return action(CompaniesTypes.DELETE_COMPANY_SUCCESS);
+}
+
+export function deleteCompanyFailure(): CompaniesActionTypes {
+  return action(CompaniesTypes.DELETE_COMPANY_FAILURE);
+}
+
 export function setEditCompany(data: Company): CompaniesActionTypes {
   return action(CompaniesTypes.SET_EDIT_COMPANY, { data });
 }
 
 export function removeEditCompany(): CompaniesActionTypes {
   return action(CompaniesTypes.REMOVE_EDIT_COMPANY);
+}
+export function clearError(): CompaniesActionTypes {
+  return action(CompaniesTypes.CLEAR_ERROR);
 }
 
 export function clearData(): CompaniesActionTypes {

@@ -7,6 +7,8 @@ import Users from "../pages/Users";
 import { useSelector } from "../redux/hooks";
 import { CustomBrowserRouter } from "./CustomBrowserRouter";
 import configApi from "../services/config";
+import NotFound from "../pages/NotFound";
+import Questions from "../pages/Questions";
 
 const Router = () => {
   const { account } = useSelector((state) => state);
@@ -46,6 +48,11 @@ const Router = () => {
           path="users"
           element={isAuthenticated ? <Users /> : <Authentication />}
         />
+        <Route
+          path="questions"
+          element={isAuthenticated ? <Questions /> : <Authentication />}
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </CustomBrowserRouter>
   );

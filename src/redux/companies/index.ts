@@ -13,6 +13,7 @@ const INITIAL_STATE: CompaniesState = {
     data: null,
     count: null,
   },
+  error: null,
 };
 
 const reducer: Reducer<CompaniesState> = (
@@ -50,19 +51,22 @@ const reducer: Reducer<CompaniesState> = (
 
     // REGISTER COMPANY
     case CompaniesTypes.REGISTER_COMPANY_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, status: null };
 
     case CompaniesTypes.REGISTER_COMPANY_SUCCESS:
-      return { ...state, loading: false, data: payload.data };
+      return { ...state, loading: false, data: payload.data, error: false };
 
     case CompaniesTypes.REGISTER_COMPANY_FAILURE:
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: true };
 
     case CompaniesTypes.SET_EDIT_COMPANY:
       return { ...state, editCompany: payload.data };
 
     case CompaniesTypes.REMOVE_EDIT_COMPANY:
       return { ...state, editCompany: null };
+
+    case CompaniesTypes.CLEAR_ERROR:
+      return { ...state, error: null };
 
     // CLEAR DATA
     case CompaniesTypes.CLEAR_DATA:

@@ -77,7 +77,11 @@ const InformacoesComplementares = ({ onSubmit }: Props) => {
         </div>
 
         <div className="mt-5">
-          <Button title="Salvar" loading={account.loading} icon={<FaSave />} />
+          <Button
+            title="Salvar"
+            loading={companies.loading}
+            icon={<FaSave />}
+          />
         </div>
       </Form>
     </Formik>
