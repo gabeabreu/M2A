@@ -1,39 +1,44 @@
 import { Tab } from "@headlessui/react";
 import { useState } from "react";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Button from "../Button";
 import InputFormik from "../InputFormik";
 import { useSelector } from "../../redux/hooks";
 import Modal from "../Modal";
-import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import { IoMdAdd } from "react-icons/io";
+import { Company } from "../../redux/companies/types";
+import { CompaniesActions } from "../../redux/companies";
+import { useDispatch } from "react-redux";
 
 const Results = () => {
-  const [editOpen, setEditOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const { companies, general } = useSelector((state) => state);
-  const [addOpen, setAddOpen] = useState(false);
+  const companiesData = companies?.companies?.data;
+
+  const [editOpen, setEditOpen] = useState(false);
+
+  function handleOpenModal(company?: Company) {
+    if (company) dispatch(CompaniesActions.setEditCompany(company));
+    else dispatch(CompaniesActions.removeEditCompany());
+    setEditOpen(true);
+  }
+
+  function handleDeleteCompany(company?: Company) {
+    console.log(company);
+  }
 
   return (
-    <div className="mb-32">
+    <div className="mb-32 mt-10">
       <Modal
         showModal={editOpen}
         closeButton
         onCloseModal={() => setEditOpen(false)}
       >
-        <div className="px-5 py-10">
-          <EditForm />
-        </div>
+        <EditForm closeForm={() => setEditOpen(false)} />
       </Modal>
-      <Modal
-        showModal={addOpen}
-        closeButton
-        onCloseModal={() => setAddOpen(false)}
-      >
-        <div className="px-5 py-10">
-          <AddForm />
-        </div>
-      </Modal>
+
       <div className="sm:flex sm:items-center"></div>
       <div className="mt-8 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-1 sm:px-0">
@@ -43,7 +48,7 @@ const Results = () => {
                 <h2 className="ml-0 text-2xl font-medium">Lista de empresas</h2>
                 <div className="mr-0">
                   <Button
-                    onClick={() => setAddOpen(true)}
+                    onClick={() => handleOpenModal()}
                     title="Cadastrar empresa"
                     color="#32c841"
                     icon={<IoMdAdd />}
@@ -55,33 +60,39 @@ const Results = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm min-w-[12rem] font-semibold text-gray-900 sm:pl-6"
                     >
                       Nome
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm min-w-[12rem] font-semibold text-gray-900"
                     >
                       Empresa vinculada
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left text-sm min-w-[10rem] font-semibold text-gray-900"
                     >
                       Estado
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="flex justify-center py-3.5 min-w-[2rem] text-sm font-semibold text-gray-900"
                     >
                       Editar
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 text-center py-3.5 text-left text-sm min-w-[2rem] font-semibold text-gray-900"
+                    >
+                      Excluir
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {companies &&
-                    companies?.companies?.data?.map((company) => (
+                  {companiesData &&
+                    companiesData.map((company) => (
                       <tr key={company.razao_social}>
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                           {company.razao_social}
@@ -90,14 +101,26 @@ const Results = () => {
                           {company.cnpj}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {company.endereco as number}
+                          {
+                            general?.uf?.find(
+                              (uf) => uf.id === company.endereco.uf
+                            ).label
+                          }
                         </td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                        <td className="relative whitespace-nowrap py-4 text-right text-sm font-medium">
                           <button
-                            className="text-main-blue"
-                            onClick={() => setEditOpen(true)}
+                            className="flex text-main-blue mx-auto"
+                            onClick={() => handleOpenModal(company)}
                           >
                             <FaEdit />
+                          </button>
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 text-right text-sm font-medium">
+                          <button
+                            className="flex mx-auto text-[#d14f4f]"
+                            onClick={() => handleDeleteCompany(company)}
+                          >
+                            <FaTrash />
                           </button>
                         </td>
                       </tr>

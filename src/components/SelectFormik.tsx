@@ -19,6 +19,7 @@ interface Props {
   mask?: string;
   descriptionMarginBottom?: number;
   vertical?: boolean;
+  required?: boolean;
 }
 
 const SelectFormik: React.FC<Props> = ({
@@ -29,6 +30,7 @@ const SelectFormik: React.FC<Props> = ({
   placeholder,
   disableErrorMessage,
   description,
+  required,
 }) => {
   const { values, errors, touched, setFieldValue, setErrors } =
     useFormikContext<any>();
@@ -52,6 +54,7 @@ const SelectFormik: React.FC<Props> = ({
       {label && (
         <label className="mb-1 block text-sm font-medium text-gray-700">
           {label}
+          {required && <span className="ml-1 text-red-400">*</span>}
         </label>
       )}
       <div className="relative flex">

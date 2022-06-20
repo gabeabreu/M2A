@@ -7,6 +7,7 @@ import Results from "../components/companies/Results";
 import SearchForm from "../components/companies/SearchForm";
 import Layout from "../components/Layout";
 import { CompaniesActions } from "../redux/companies";
+import { GeneralActions } from "../redux/general";
 import { useSelector } from "../redux/hooks";
 
 function Companies() {
@@ -14,6 +15,7 @@ function Companies() {
 
   useEffect(() => {
     dispatch(CompaniesActions.getCompaniesRequest());
+    dispatch(GeneralActions.getUfRequest());
   }, []);
 
   return (

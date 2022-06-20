@@ -3,7 +3,7 @@ import { Reducer } from "redux";
 import * as Actions from "./actions";
 import { AccountState, AccountTypes } from "./types";
 import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
+import { persistReducer } from "redux-persist";
 
 const INITIAL_STATE: AccountState = {
   loading: false,

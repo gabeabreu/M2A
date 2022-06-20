@@ -16,6 +16,9 @@ export enum CompaniesTypes {
   REGISTER_COMPANY_SUCCESS = "@companies/REGISTER_COMPANY_SUCCESS",
   REGISTER_COMPANY_FAILURE = "@companies/REGISTER_COMPANY_FAILURE",
 
+  SET_EDIT_COMPANY = "@companies/SET_EDIT_COMPANY",
+  REMOVE_EDIT_COMPANY = "@companies/REMOVE_EDIT_COMPANY",
+
   CLEAR_DATA = "@companies/CLEAR_DATA",
 }
 
@@ -60,6 +63,15 @@ export interface RegisterCompanyFailure {
   type: CompaniesTypes.REGISTER_COMPANY_FAILURE;
 }
 
+export interface SetEditCompany {
+  type: CompaniesTypes.SET_EDIT_COMPANY;
+  payload: { data: Company };
+}
+
+export interface RemoveEditCompany {
+  type: CompaniesTypes.REMOVE_EDIT_COMPANY;
+}
+
 export interface ClearData {
   type: CompaniesTypes.CLEAR_DATA;
 }
@@ -74,10 +86,13 @@ export type CompaniesActionTypes =
   | RegisterCompany
   | RegisterCompanySuccess
   | RegisterCompanyFailure
+  | SetEditCompany
+  | RemoveEditCompany
   | ClearData;
 
 export interface CompaniesState {
   loading: boolean;
+  editCompany: Company | null;
   company: { data: Company[] | null };
   companies: { data: Company[] | null; count: number | null };
 }
@@ -98,12 +113,12 @@ export interface Company {
   missao?: string;
   visao?: string;
   valores?: string;
-  grupo: number;
-  segmento: number;
-  setor: number;
-  tipo_industria: number;
-  faturamento: number;
+  grupo: { nome_grupo: string };
+  segmento: { ds_segmento: string };
+  setor: { ds_setor: string };
+  tipo_industria: { ds_tipo_industria: string };
+  faturamento: { dt_ano: string; valor: number };
   projeto: number;
-  endereco: number | Address;
-  valor_arrecadacao: number;
+  endereco: Address;
+  valor_arrecadacao: { tipo_arrecadacao: string };
 }

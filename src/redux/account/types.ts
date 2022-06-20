@@ -61,7 +61,7 @@ export interface AccountState {
 
 export interface Profile {
   id?: number;
-  ativo: boolean;
+  ativo: boolean | number;
   nome: string;
   sobrenome: string;
   cpf: string;

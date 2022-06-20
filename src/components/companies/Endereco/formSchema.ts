@@ -1,21 +1,16 @@
 import * as Yup from "yup";
-
-const initialValues: any = {
-  cep: '',
-  logradouro: '',
-  bairro: '',
-  cidade: '',
-  complemento: '',
-  uf: '',
-};
+import { formErrors } from "../../../helpers";
 
 const validationSchema = Yup.object().shape({
-  cep: Yup.string(),
+  cep: Yup.string().required(formErrors.errorMessages.required),
   logradouro: Yup.string(),
   bairro: Yup.string(),
   cidade: Yup.string(),
   complemento: Yup.string(),
-  uf: Yup.string(),
+  uf: Yup.string().required(formErrors.errorMessages.required),
+  fax: Yup.string(),
+  telefone: Yup.string().required(formErrors.errorMessages.required),
+  celular: Yup.string(),
 });
 
 // async function validate({ birthday, email }: AccountRegister) {
@@ -46,7 +41,6 @@ const validationSchema = Yup.object().shape({
 
 export default {
   // validate,
-  initialValues,
   validationSchema,
   validateOnBlur: false,
   validateOnChange: false,

@@ -50,9 +50,16 @@ function* getCompaniesSuccess(data: Company[], count: number) {
 
 function* registerCompany({ payload: { data } }: RegisterCompany) {
   try {
-    yield call(api.companies.registerCompany, data);
+    const { data: address } = yield call(
+      api.general.registerAddress,
+      data.endereco
+    );
 
-    showToast("Empresa cadastrada com sucesso!", "success");
+    yield call(api.companies.registerCompany, {
+      ...data,
+      endereco: address.id,
+    });
+
     yield registerCompanySuccess(data);
   } catch (err) {
     yield put(CompaniesActions.registerCompanyFailure());
@@ -63,6 +70,10 @@ function* registerCompany({ payload: { data } }: RegisterCompany) {
 
 function* registerCompanySuccess(data) {
   yield put(CompaniesActions.registerCompanySuccess(data));
+  yield put(CompaniesActions.getCompaniesRequest());
+  yield put(CompaniesActions.removeEditCompany());
+  showToast("Empresa cadastrada com sucesso!", "success");
+  customHistory.push("/companies");
 }
 
 function clearData() {

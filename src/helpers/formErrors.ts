@@ -64,7 +64,6 @@ export function formatError(err: ErrorType) {
 
   if (error.status === 400) {
     const details = error.data;
-    console.log(details);
     const keys = Object.keys(details);
 
     if (keys.length > 0) {

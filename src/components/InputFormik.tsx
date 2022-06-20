@@ -1,5 +1,5 @@
-import { Field, useFormikContext } from 'formik';
-import React, { useState, useRef, useEffect } from 'react';
+import { Field, useFormikContext } from "formik";
+import React, { useState, useRef, useEffect } from "react";
 
 interface Props {
   autoFocus?: any;
@@ -14,9 +14,12 @@ interface Props {
   description?: string;
   mask?: string;
   descriptionMarginBottom?: number;
+  textArea?: boolean;
+  required?: boolean;
 }
 
 const InputFormik: React.FC<Props> = ({
+  required,
   autoFocus,
   name,
   label,
@@ -27,6 +30,7 @@ const InputFormik: React.FC<Props> = ({
   multiline,
   descriptionMarginBottom,
   type,
+  textArea,
 }) => {
   const { values, errors, touched, setFieldValue, setErrors } =
     useFormikContext<any>();
@@ -51,15 +55,16 @@ const InputFormik: React.FC<Props> = ({
   return (
     <>
       {label && (
-        <label className='mb-1 block text-sm font-medium text-gray-700'>
+        <label className="mb-1 block text-sm font-medium text-gray-700">
           {label}
+          {required && <span className="ml-1 text-red-400">*</span>}
         </label>
       )}
-      <div className=''>
+      <div className="">
         <Field
-          className={`${
-            error ? 'border-red-400' : 'mb-8 border-gray-300'
-          } appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+          className={`${textArea && "h-24"} ${
+            error ? "border-red-400" : "mb-5 border-gray-300"
+          } appearance-none block w-full px-3 py-2 border text-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
           name={name}
           error={!disableErrorMessage ? error : undefined}
           ref={inputRef}
@@ -73,12 +78,12 @@ const InputFormik: React.FC<Props> = ({
           onBlur={() => setFocus(false)}
           value={values[name]}
           placeholder={placeholder}
-          multiline={multiline}
+          as={textArea ? "textarea" : "input"}
         />
       </div>
       {error || description ? (
-        <div className='text-red-400 text-xs mb-4'>{`${
-          error || description || ''
+        <div className="text-red-400 text-xs mb-4">{`${
+          error || description || ""
         }`}</div>
       ) : null}
     </>

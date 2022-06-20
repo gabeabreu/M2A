@@ -6,10 +6,19 @@ import Questionnaires from "../pages/Questionnaires";
 import Users from "../pages/Users";
 import { useSelector } from "../redux/hooks";
 import { CustomBrowserRouter } from "./CustomBrowserRouter";
+import configApi from "../services/config";
 
 const Router = () => {
   const { account } = useSelector((state) => state);
   const isAuthenticated = account.token;
+
+  if (isAuthenticated) {
+    configApi.interceptors.request.use((config) => {
+      config.headers.Authorization = `Bearer ${account.token}`;
+      return config;
+    });
+  }
+
   // console.log(isAuthenticated);
   return (
     <CustomBrowserRouter basename={"/"}>
@@ -22,6 +31,7 @@ const Router = () => {
         />
         <Route
           path="companies"
+          // element={<Companies />}
           element={isAuthenticated ? <Companies /> : <Authentication />}
         />
         <Route

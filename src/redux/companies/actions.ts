@@ -40,6 +40,14 @@ export function registerCompanyFailure(): CompaniesActionTypes {
   return action(CompaniesTypes.REGISTER_COMPANY_FAILURE);
 }
 
+export function setEditCompany(data: Company): CompaniesActionTypes {
+  return action(CompaniesTypes.SET_EDIT_COMPANY, { data });
+}
+
+export function removeEditCompany(): CompaniesActionTypes {
+  return action(CompaniesTypes.REMOVE_EDIT_COMPANY);
+}
+
 export function clearData(): CompaniesActionTypes {
   return action(CompaniesTypes.CLEAR_DATA);
 }

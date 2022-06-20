@@ -31,7 +31,7 @@ const Modal: React.FC<Props> = ({
         <div className="fixed inset-0 bg-[#000000A6] bg-opacity-75 transition-opacity" />
       </Transition.Child>
 
-      <div className="fixed z-10 inset-0 overflow-y-auto">
+      <div className="fixed z-10 inset-0 overflow-y-auto py-20">
         <div className="flex items-center justify-center min-h-full p-4 text-center sm:p-0">
           <Transition.Child
             as={Fragment}

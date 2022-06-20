@@ -12,7 +12,7 @@ const initialValues: RegisterProfile = {
   password: "",
   confirmPassword: "",
   formacao: "",
-  perfil: "",
+  perfil: "user",
   uf: "",
   ativo: true,
   empresa: 1,

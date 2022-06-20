@@ -6,6 +6,7 @@ import { customHistory } from "../../routes/CustomBrowserRouter";
 import * as api from "../../services/index";
 import * as helpers from "../../helpers/index";
 import showToast from "../../helpers/showToast";
+import configApi from "../../services/config";
 
 function* getAccount({ payload: { data } }: GetAccount) {
   try {
@@ -21,6 +22,11 @@ function* getAccount({ payload: { data } }: GetAccount) {
 }
 
 function* getAccountSuccess(data, token) {
+  configApi.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
+
   yield put(AccountActions.getAccountSuccess(data, token));
   customHistory.push("/companies");
 }
@@ -34,6 +40,7 @@ function* registerAccount({ payload: { data } }: RegisterAccount) {
   } catch (err) {
     yield put(AccountActions.registerAccountFailure());
 
+    console.log(err);
     showToast(helpers.formErrors.formatError(err), "error");
   }
 }

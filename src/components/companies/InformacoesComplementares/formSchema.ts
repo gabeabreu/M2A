@@ -1,12 +1,5 @@
 import * as Yup from "yup";
 
-const initialValues: any = {
-  ds_negocio: '',
-  missao: '',
-  visao: '',
-  valores: '',
-};
-
 const validationSchema = Yup.object().shape({
   ds_negocio: Yup.string(),
   missao: Yup.string(),
@@ -42,7 +35,6 @@ const validationSchema = Yup.object().shape({
 
 export default {
   // validate,
-  initialValues,
   validationSchema,
   validateOnBlur: false,
   validateOnChange: false,

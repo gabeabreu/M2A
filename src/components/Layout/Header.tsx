@@ -75,7 +75,7 @@ const Header = () => {
       </div>
       <div className="hidden md:block">
         <nav
-          className="relative flex z-0 rounded-lg overflow-hidden shadow divide-x divide-gray-200 duration-500"
+          className="relative flex z-0 rounded-lg overflow-hidden shadow-md divide-x divide-gray-200 duration-500"
           aria-label="Tabs"
         >
           {tabs.map((tab) => (
@@ -84,9 +84,9 @@ const Header = () => {
                 key={tab.name}
                 className={`${
                   tab.href === activeTab
-                    ? "text-white border-indigo-500"
-                    : "text-gray-400 hover:text-gray-300 border-transparent"
-                } group relative min-w-0 flex-1 overflow-hidden bg-main-blue py-[0.75rem] px-4 text-sm font-medium text-center border-b-2 focus:z-10 duration-500`}
+                    ? "text-white border-secondary-blue"
+                    : "text-[#cccccc] hover:text-[#e8e8e8] border-transparent border-[#99c3dd]"
+                } group relative min-w-0 flex-1 overflow-hidden bg-main-blue hover:bg-[#00558a]  py-[0.75rem] px-4 text-sm font-medium text-center border-b-2 focus:z-10 duration-500`}
                 aria-current={tab.href === activeTab ? "page" : undefined}
               >
                 <span>{tab.name}</span>

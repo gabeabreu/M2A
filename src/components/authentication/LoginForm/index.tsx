@@ -5,12 +5,14 @@ import { AccountActions } from "../../../redux/account";
 import { useSelector } from "../../../redux/hooks";
 import { InputFormik, Button } from "../../index";
 import formSchema from "./formSchema";
+import { customHistory } from "../../../routes/CustomBrowserRouter";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { account } = useSelector((state) => state);
 
   function handleSubmit(values) {
+    // customHistory.push("/companies");
     dispatch(
       AccountActions.getAccountRequest({ ...values, username: values.email })
     );

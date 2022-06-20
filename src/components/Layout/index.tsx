@@ -12,7 +12,7 @@ const Layout = ({ children }: Props) => {
         <Header />
         {children}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

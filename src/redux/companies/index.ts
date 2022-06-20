@@ -8,6 +8,7 @@ import { CompaniesState, CompaniesTypes } from "./types";
 const INITIAL_STATE: CompaniesState = {
   loading: false,
   company: null,
+  editCompany: null,
   companies: {
     data: null,
     count: null,
@@ -56,6 +57,12 @@ const reducer: Reducer<CompaniesState> = (
 
     case CompaniesTypes.REGISTER_COMPANY_FAILURE:
       return { ...state, loading: false };
+
+    case CompaniesTypes.SET_EDIT_COMPANY:
+      return { ...state, editCompany: payload.data };
+
+    case CompaniesTypes.REMOVE_EDIT_COMPANY:
+      return { ...state, editCompany: null };
 
     // CLEAR DATA
     case CompaniesTypes.CLEAR_DATA:
