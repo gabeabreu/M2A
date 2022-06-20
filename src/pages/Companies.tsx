@@ -1,14 +1,28 @@
-import React from "react";
+import { Tab } from "@headlessui/react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { InputFormik, SelectFormik } from "../components";
+import Results from "../components/companies/Results";
+import SearchForm from "../components/companies/SearchForm";
+import Layout from "../components/Layout";
+import { CompaniesActions } from "../redux/companies";
+import { GeneralActions } from "../redux/general";
+import { useSelector } from "../redux/hooks";
 
 function Companies() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(CompaniesActions.getCompaniesRequest());
+    dispatch(GeneralActions.getUfRequest());
+  }, []);
+
   return (
-    <div className="flex flex-col bg-gray-400 h-screen w-screen justify-center items-center">
-      <p className="text-white text-2xl">Companies</p>
-      <Link to="/">
-        <p className="text-blue-900 text-xl">{`<- go back`}</p>
-      </Link>
-    </div>
+    <Layout>
+      <SearchForm />
+      <Results />
+    </Layout>
   );
 }
 

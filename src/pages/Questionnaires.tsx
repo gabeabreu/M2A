@@ -1,15 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
-function Questionnaires() {
+function Questions() {
   return (
-    <div className="flex flex-col bg-gray-400 h-screen w-screen justify-center items-center">
-      <p className="text-white text-2xl">Questionnaires</p>
-      <Link to="/">
-        <p className="text-blue-900 text-xl">{`<- go back`}</p>
-      </Link>
-    </div>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 }
 
-export default Questionnaires;
+export default Questions;
